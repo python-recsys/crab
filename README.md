@@ -33,8 +33,7 @@
   * You just contributed to the Crab project!
 
 
-Dependencies
-============
+## Dependencies
 
 The required dependencies to build the software are Python >= 2.6,
 setuptools, Numpy >= 1.3, SciPy >= 0.7 and a working C/C++ compiler.
@@ -42,9 +41,8 @@ This configuration matches the Ubuntu 10.04 LTS release from April 2010.
 
 To run the tests you will also need nose >= 0.10.
 
-
-Install
-=======
+ 
+## Install
 
 This package uses distutils, which is the default way of installing
 python modules. To install in your home directory, use::
@@ -57,8 +55,7 @@ To install for all users on Unix/Linux::
   sudo python setup.py install
 
 
-Testing
--------
+## Testing
 
 After installation, you can launch the test suite from outside the
 source directory (you will need to have nosetest installed)::
