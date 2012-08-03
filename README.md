@@ -12,15 +12,14 @@
 ## History
   
   The project was started in 2010  by Marcel Caraciolo as a M.S.C related  project, and since then many people interested joined to help in the project.
-  It is currently maintained by a team of volunteers, members of the Python-Recsys Labs.
-
-## Authors
-  
-  Marcel Caraciolo (marcel@orygens.com)  
+  It is currently maintained by a team of volunteers, members of the Python-Recsys Labs.  
 
 ## Bugs, Feedback
 
   Please submit bugs you might encounter, as well Patches and Features Requests to the [Issues Tracker](https://github.com/muricoca/crab/issues) located at GitHub.
+
+## Authors
+  See the AUTHORS.rst file for a complete list of contributors.
 
 ## Contributions
 
@@ -32,6 +31,43 @@
   * Push to your branch - git push origin my_branch
   * Create a [Pull Request](http://help.github.com/pull-requests/) from your branch.
   * You just contributed to the Crab project!
+
+
+Dependencies
+============
+
+The required dependencies to build the software are Python >= 2.6,
+setuptools, Numpy >= 1.3, SciPy >= 0.7 and a working C/C++ compiler.
+This configuration matches the Ubuntu 10.04 LTS release from April 2010.
+
+To run the tests you will also need nose >= 0.10.
+
+
+Install
+=======
+
+This package uses distutils, which is the default way of installing
+python modules. To install in your home directory, use::
+
+  python setup.py install --home
+
+To install for all users on Unix/Linux::
+
+  python setup.py build
+  sudo python setup.py install
+
+
+Testing
+-------
+
+After installation, you can launch the test suite from outside the
+source directory (you will need to have nosetest installed)::
+
+    python -c "import crab; crab.test()"
+
+See web page http://python-recsys.github.com/install.html#testing
+for more information.
+
 
 ## Wiki
 
