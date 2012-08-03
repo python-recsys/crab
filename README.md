@@ -46,13 +46,13 @@ To run the tests you will also need nose >= 0.10.
 This package uses distutils, which is the default way of installing
 python modules. To install in your home directory, use::
 
-  python setup.py install --home
+    python setup.py install --home
+
 
 To install for all users on Unix/Linux::
 
-  python setup.py build
-  sudo python setup.py install
-
+    python setup.py build
+    sudo python setup.py install
 
 ## Testing
 
