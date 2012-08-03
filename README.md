@@ -1,7 +1,6 @@
 # Crab - A Recommendation Engine library for Python
 
-  Crab is a ﬂexible, fast recommender engine for Python that integrates classic information ﬁltering recom- 
-  mendation algorithms in the world of scientiﬁc Python packages (numpy, scipy, matplotlib). The engine aims 
+  Crab is a ﬂexible, fast recommender engine for Python that integrates classic information ﬁltering recommendation algorithms in the world of scientiﬁc Python packages (numpy, scipy, matplotlib). The engine aims 
   to provide a rich set of components from which you can construct a customized recommender system from a 
   set of algorithms.
 
