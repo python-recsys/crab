@@ -26,6 +26,8 @@ People
 
   * Rodrigo Vieira , 2010 , Wiki Pages and Docummentation Support.
 
+  * Vinnicyus Alves, 2012
+
 If I forgot anyone, do not hesitate to send me an email to
 marcel@orygens.com and I'll include you in the list.
 
