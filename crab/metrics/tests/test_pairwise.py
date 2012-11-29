@@ -6,7 +6,7 @@ from numpy.testing import assert_array_almost_equal
 from nose.tools import assert_raises
 from scipy.sparse import csr_matrix
 
-from ..pairwise import euclidean_distances
+from ..pairwise import euclidean_distances, pearson_correlation
 
 
 def test_check_dense_matrices():
@@ -128,4 +128,50 @@ def test_euclidean_distances():
     X = csr_matrix(X)
     Y = csr_matrix(Y)
     D = euclidean_distances(X, Y)
+    assert_array_almost_equal(D, [[1.], [1.41421356]])
+
+
+def test_pearson_correlation():
+    """ Check that the pairwise Pearson distances computation"""
+    #Idepontent Test
+    X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
+    D = pearson_correlation(X, X)
+    assert_array_almost_equal(D, [[1.]])
+
+    #Vector x Non Vector
+    X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
+    Y = [[]]
+    assert_raises(Exception, pearson_correlation, X, Y)
+
+    #Vector A x Vector B
+    X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
+    Y = [[3.0, 3.5, 1.5, 5.0, 3.5, 3.0]]
+    D = pearson_correlation(X, Y)
+    assert_array_almost_equal(D, [[0.3960590]])
+
+    #Vector N x 1
+    X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0], [2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
+    Y = [[3.0, 3.5, 1.5, 5.0, 3.5, 3.0]]
+    D = pearson_correlation(X, Y)
+    assert_array_almost_equal(D, [[0.3960590], [0.3960590]])
+
+    #N-Dimmensional Vectors
+    X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0], [2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
+    Y = [[3.0, 3.5, 1.5, 5.0, 3.5, 3.0], [2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
+    D = pearson_correlation(X, Y)
+    assert_array_almost_equal(D, [[0.3960590, 1.], [0.3960590, 1.]])
+
+    X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0], [3.0, 3.5, 1.5, 5.0, 3.5, 3.0]]
+    D = pearson_correlation(X, X)
+    assert_array_almost_equal(D, [[1., 0.39605902], [0.39605902, 1.]])
+
+    X = [[1.0, 0.0], [1.0, 1.0]]
+    Y = [[0.0, 0.0]]
+    D = pearson_correlation(X, Y)
+    assert_array_almost_equal(D, [[np.nan], [np.nan]])
+
+    #Test Sparse Matrices
+    X = csr_matrix(X)
+    Y = csr_matrix(Y)
+    D = pearson_correlation(X, Y)
     assert_array_almost_equal(D, [[1.], [1.41421356]])

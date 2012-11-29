@@ -23,6 +23,7 @@ To be a 'true' metric, it must obey the following four conditions::
 import numpy as np
 from scipy.sparse import issparse
 from scipy.sparse import csr_matrix
+import scipy.spatial.distance as ssd
 
 from ..utils import safe_asarray, atleast2d_or_csr
 from ..utils.extmath import safe_sparse_dot
@@ -174,3 +175,58 @@ def euclidean_distances(X, Y=None, Y_norm_squared=None, squared=False,
     return distances if squared else np.sqrt(distances)
 
 euclidian_distances = euclidean_distances  # both spelling for backward compat
+
+
+def pearson_correlation(X, Y):
+    """
+    Considering the rows of X (and Y=X) as vectors, compute the
+    distance matrix between each pair of vectors.
+
+    This correlation implementation is equivalent to the cosine similarity
+    since the data it receives is assumed to be centered -- mean is 0. The
+    correlation may be interpreted as the cosine of the angle between the two
+    vectors defined by the users' preference values.
+
+    Parameters
+    ----------
+    X : {array-like, sparse matrix}, shape = [n_samples_1, n_features]
+
+    Y : {array-like, sparse matrix}, shape = [n_samples_2, n_features]
+
+    Returns
+    -------
+    distances : {array, sparse matrix}, shape = [n_samples_1, n_samples_2]
+
+    Examples
+    --------
+    >>> from crab.metrics.pairwise import pearson_correlation
+    >>> X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0],[2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
+    >>> # distance between rows of X
+    >>> pearson_correlation(X, X)
+    array([[ 1., 1.],
+           [ 1., 1.]])
+    >>> pearson_correlation(X, [[3.0, 3.5, 1.5, 5.0, 3.5,3.0]])
+    array([[ 0.39605902],
+               [ 0.39605902]])
+    """
+    # should not need X_norm_squared because if you could precompute that as
+    # well as Y, then you should just pre-compute the output and not even
+    # call this function.
+
+    X, Y = check_pairwise_arrays(X, Y)
+    n_samples_X, n_features_X = X.shape
+    n_samples_Y, n_features_Y = Y.shape
+
+    if n_features_X != n_features_Y:
+        raise Exception("X and Y should have the same number of features!")
+
+    if X is Y:
+        X = Y = np.asanyarray(X)
+    else:
+        X = np.asanyarray(X)
+        Y = np.asanyarray(Y)
+
+    #TODO: Check if it works with sparse matrices.
+    XY = ssd.cdist(X, Y, 'correlation', 2)
+
+    return 1 - XY
