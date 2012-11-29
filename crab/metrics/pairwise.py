@@ -21,7 +21,11 @@ To be a 'true' metric, it must obey the following four conditions::
 # License: BSD Style.
 
 import numpy as np
+from scipy.sparse import issparse
+from scipy.sparse import csr_matrix
+
 from ..utils import safe_asarray, atleast2d_or_csr
+from ..utils.extmath import safe_sparse_dot
 
 
 # Utility Functions
@@ -70,3 +74,104 @@ def check_pairwise_arrays(X, Y):
                          "X.shape[1] == %d while Y.shape[1] == %d" % (
                              X.shape[1], Y.shape[1]))
     return X, Y
+
+
+# Distances
+def euclidean_distances(X, Y=None, Y_norm_squared=None, squared=False,
+        inverse=True):
+    """
+    Considering the rows of X (and Y=X) as vectors, compute the
+    distance matrix between each pair of vectors.
+
+    For efficiency reasons, the euclidean distance between a pair of row
+    vector x and y is computed as::
+
+        dist(x, y) = sqrt(dot(x, x) - 2 * dot(x, y) + dot(y, y))
+
+    This formulation has two main advantages. First, it is computationally
+    efficient when dealing with sparse data. Second, if x varies but y
+    remains unchanged, then the right-most dot-product `dot(y, y)` can be
+    pre-computed.
+
+    Parameters
+    ----------
+    X : {array-like, sparse matrix}, shape = [n_samples_1, n_features]
+
+    Y : {array-like, sparse matrix}, shape = [n_samples_2, n_features]
+
+    Y_norm_squared : array-like, shape = [n_samples_2], optional
+        Pre-computed dot-products of vectors in Y (e.g.,
+        ``(Y**2).sum(axis=1)``)
+
+    squared : boolean, optional
+        This routine will return squared Euclidean distances instead.
+
+    inverse: boolean, optional
+        This routine will return the inverse Euclidean distances instead.
+
+
+    Returns
+    -------
+    distances : {array, sparse matrix}, shape = [n_samples_1, n_samples_2]
+
+    Examples
+    --------
+    >>> from crab.metrics.pairwise import euclidean_distances
+    >>> X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0],[3.0, 3.5, 1.5, 5.0, 3.5,3.0]]
+    >>> # distrance between rows of X
+    >>> euclidean_distances(X, X)
+    array([[ 1.        ,  0.29429806],
+           [ 0.29429806,  1.        ]])
+    >>> # get distance to origin
+    >>> X = [[1.0, 0.0],[1.0,1.0]]
+    >>> euclidean_distances(X, [[0.0, 0.0]])
+    array([[ 0.5       ],
+          [ 0.41421356]])
+
+    """
+    # should not need X_norm_squared because if you could precompute that as
+    # well as Y, then you should just pre-compute the output and not even
+    # call this function.
+    X, Y = check_pairwise_arrays(X, Y)
+
+    if issparse(X):
+        XX = X.multiply(X).sum(axis=1)
+    else:
+        XX = np.sum(X * X, axis=1)[:, np.newaxis]
+
+    if X is Y:  # shortcut in the common case euclidean_distances(X, X)
+        YY = XX.T
+    elif Y_norm_squared is None:
+        if issparse(Y):
+            # scipy.sparse matrices don't have element-wise scalar
+            # exponentiation, and tocsr has a copy kwarg only on CSR matrices.
+            YY = Y.copy() if isinstance(Y, csr_matrix) else Y.tocsr()
+            YY.data **= 2
+            YY = np.asarray(YY.sum(axis=1)).T
+        else:
+            YY = np.sum(Y ** 2, axis=1)[np.newaxis, :]
+    else:
+        YY = atleast2d_or_csr(Y_norm_squared)
+        if YY.shape != (1, Y.shape[0]):
+            raise ValueError(
+                        "Incompatible dimensions for Y and Y_norm_squared")
+
+    # TODO: a faster Cython implementation would do the clipping of negative
+    # values in a single pass over the output matrix.
+    distances = safe_sparse_dot(X, Y.T, dense_output=True)
+    distances *= -2
+    distances += XX
+    distances += YY
+    np.maximum(distances, 0, distances)
+
+    if X is Y:
+        # Ensure that distances between vectors and themselves are set to 0.0.
+        # This may not be the case due to floating point rounding errors.
+        distances.flat[::distances.shape[0] + 1] = 0.0
+
+    distances = np.divide(1.0, (1.0 + distances)) if inverse else distances
+
+    return distances if squared else np.sqrt(distances)
+
+
+euclidian_distances = euclidean_distances  # both spelling for backward compat
