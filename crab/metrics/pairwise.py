@@ -78,7 +78,7 @@ def check_pairwise_arrays(X, Y):
 
 # Distances
 def euclidean_distances(X, Y=None, Y_norm_squared=None, squared=False,
-        inverse=True):
+        inverse=False):
     """
     Considering the rows of X (and Y=X) as vectors, compute the
     distance matrix between each pair of vectors.
@@ -117,16 +117,16 @@ def euclidean_distances(X, Y=None, Y_norm_squared=None, squared=False,
     Examples
     --------
     >>> from crab.metrics.pairwise import euclidean_distances
-    >>> X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0],[3.0, 3.5, 1.5, 5.0, 3.5,3.0]]
+    >>> X = [[0, 1], [1, 1]]
     >>> # distrance between rows of X
     >>> euclidean_distances(X, X)
-    array([[ 1.        ,  0.29429806],
-           [ 0.29429806,  1.        ]])
+    array([[ 0.,  1.],
+           [ 1.,  0.]])
     >>> # get distance to origin
     >>> X = [[1.0, 0.0],[1.0,1.0]]
     >>> euclidean_distances(X, [[0.0, 0.0]])
-    array([[ 0.5       ],
-          [ 0.41421356]])
+    array([[ 1.      ],
+          [ 1.41421356]])
 
     """
     # should not need X_norm_squared because if you could precompute that as
@@ -172,6 +172,5 @@ def euclidean_distances(X, Y=None, Y_norm_squared=None, squared=False,
     distances = np.divide(1.0, (1.0 + distances)) if inverse else distances
 
     return distances if squared else np.sqrt(distances)
-
 
 euclidian_distances = euclidean_distances  # both spelling for backward compat

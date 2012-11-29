@@ -86,7 +86,7 @@ def test_euclidean_distances():
     #Idepontent Test
     X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
     D = euclidean_distances(X, X)
-    assert_array_almost_equal(D, [[1.]])
+    assert_array_almost_equal(D, [[0.]])
 
     X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
     D = euclidean_distances(X, X, inverse=False)
@@ -101,31 +101,31 @@ def test_euclidean_distances():
     X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
     Y = [[3.0, 3.5, 1.5, 5.0, 3.5, 3.0]]
     D = euclidean_distances(X, Y)
-    assert_array_almost_equal(D, [[0.29429806]])
+    assert_array_almost_equal(D, [[2.39791576]])
 
     #Vector N x 1
     X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0], [2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
     Y = [[3.0, 3.5, 1.5, 5.0, 3.5, 3.0]]
     D = euclidean_distances(X, Y)
-    assert_array_almost_equal(D, [[0.29429806], [0.29429806]])
+    assert_array_almost_equal(D, [[2.39791576], [2.39791576]])
 
     #N-Dimmensional Vectors
     X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0], [2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
     Y = [[3.0, 3.5, 1.5, 5.0, 3.5, 3.0], [2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
     D = euclidean_distances(X, Y)
-    assert_array_almost_equal(D, [[0.29429806, 1.], [0.29429806,  1.]])
+    assert_array_almost_equal(D, [[2.39791576, 0.], [2.39791576,  0.]])
 
     X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0], [3.0, 3.5, 1.5, 5.0, 3.5, 3.0]]
     D = euclidean_distances(X, X)
-    assert_array_almost_equal(D, [[1., 0.29429806], [0.29429806, 1.]])
+    assert_array_almost_equal(D, [[0., 2.39791576], [2.39791576, 0.]])
 
     X = [[1.0, 0.0], [1.0, 1.0]]
     Y = [[0.0, 0.0]]
     D = euclidean_distances(X, Y)
-    assert_array_almost_equal(D, [[0.5], [0.41421356]])
+    assert_array_almost_equal(D, [[1.], [1.41421356]])
 
     #Test Sparse Matrices
     X = csr_matrix(X)
     Y = csr_matrix(Y)
     D = euclidean_distances(X, Y)
-    assert_array_almost_equal(D, [[1., 2.]])
+    assert_array_almost_equal(D, [[1.], [1.41421356]])
