@@ -23,7 +23,7 @@ To be a 'true' metric, it must obey the following four conditions::
 import numpy as np
 from scipy.sparse import issparse
 from scipy.sparse import csr_matrix
-import scipy.spatial.distance as ssd
+#import scipy.spatial.distance as ssd
 
 from ..utils import safe_asarray, atleast2d_or_csr
 from ..utils.extmath import safe_sparse_dot
@@ -212,6 +212,7 @@ def pearson_correlation(X, Y):
     # should not need X_norm_squared because if you could precompute that as
     # well as Y, then you should just pre-compute the output and not even
     # call this function.
+    from distmetrics import DistanceMetric
 
     X, Y = check_pairwise_arrays(X, Y)
     n_samples_X, n_features_X = X.shape
@@ -226,7 +227,7 @@ def pearson_correlation(X, Y):
         X = np.asanyarray(X)
         Y = np.asanyarray(Y)
 
-    #TODO: Check if it works with sparse matrices.
-    XY = ssd.cdist(X, Y, 'correlation', 2)
+    dm = DistanceMetric(metric='correlation')
+    D = dm.pdist(X, squareform=True)
 
-    return 1 - XY
+    return 1 - D
