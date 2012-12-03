@@ -23,7 +23,7 @@ To be a 'true' metric, it must obey the following four conditions::
 import numpy as np
 from scipy.sparse import issparse
 from scipy.sparse import csr_matrix
-#import scipy.spatial.distance as ssd
+import scipy.spatial.distance as ssd
 
 from ..utils import safe_asarray, atleast2d_or_csr
 from ..utils.extmath import safe_sparse_dot
@@ -212,22 +212,60 @@ def pearson_correlation(X, Y):
     # should not need X_norm_squared because if you could precompute that as
     # well as Y, then you should just pre-compute the output and not even
     # call this function.
-    from distmetrics import DistanceMetric
-
-    X, Y = check_pairwise_arrays(X, Y)
-    n_samples_X, n_features_X = X.shape
-    n_samples_Y, n_features_Y = Y.shape
-
-    if n_features_X != n_features_Y:
-        raise Exception("X and Y should have the same number of features!")
-
     if X is Y:
         X = Y = np.asanyarray(X)
     else:
         X = np.asanyarray(X)
         Y = np.asanyarray(Y)
 
-    dm = DistanceMetric(metric='correlation')
-    D = dm.pdist(X, squareform=True)
+    if X.shape[1] != Y.shape[1]:
+        raise ValueError("Incompatible dimension for X and Y matrices")
 
-    return 1 - D
+    XY = ssd.cdist(X, Y, 'correlation', 2)
+
+    return 1 - XY
+
+
+def manhattan_distances(X, Y):
+    """
+    Considering the rows of X (and Y=X) as vectors, compute the
+    distance matrix between each pair of vectors.
+
+    This distance implementation is the distance between two points in a grid
+    based on a strictly horizontal and/or vertical path (that is, along the
+    grid lines as opposed to the diagonal or "as the crow flies" distance.
+    The Manhattan distance is the simple sum of the horizontal and vertical
+    components, whereas the diagonal distance might be computed by applying the
+    Pythagorean theorem.
+
+    Parameters
+    ----------
+    X: array of shape (n_samples_1, n_features)
+
+    Y: array of shape (n_samples_2, n_features)
+
+    Returns
+    -------
+    distances: array of shape (n_samples_1, n_samples_2)
+
+    Examples
+    --------
+    >>> from crab.metrics.pairwise  import manhattan_distances
+    >>> X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0],[2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
+    >>> # distance between rows of X
+    >>> manhattan_distances(X, X)
+    array([[ 1.,  1.],
+           [ 1.,  1.]])
+    >>> manhattan_distances(X, [[3.0, 3.5, 1.5, 5.0, 3.5,3.0]])
+    array([[ 0.25],
+          [ 0.25]])
+    """
+    X, Y = check_pairwise_arrays(X, Y)
+    n_samples_X, n_features_X = X.shape
+    n_samples_Y, n_features_Y = Y.shape
+    if n_features_X != n_features_Y:
+        raise Exception("X and Y should have the same number of features!")
+    D = np.abs(X[:, np.newaxis, :] - Y[np.newaxis, :, :])
+    D = np.sum(D, axis=2)
+
+    return 1.0 - (D / float(X.shape[1]))
