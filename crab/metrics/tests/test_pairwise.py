@@ -92,6 +92,10 @@ def test_euclidean_distances():
     D = euclidean_distances(X, X)
     assert_array_almost_equal(D, [[0.]])
 
+    X = [[3.0, -2.0]]
+    D = euclidean_distances(X, X, inverse=True)
+    assert_array_almost_equal(D, [[1.]])
+
     X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
     D = euclidean_distances(X, X, inverse=False)
     assert_array_almost_equal(D, [[0.]])
@@ -111,6 +115,18 @@ def test_euclidean_distances():
     Y = [[3.0, 3.5, 1.5, 5.0, 3.5, 3.0]]
     D = euclidean_distances(X, Y)
     assert_array_almost_equal(D, [[2.39791576]])
+
+    #Inverse vector (mahout check)
+    X = [[3.0, -2.0]]
+    Y = [[-3.0, 2.0]]
+    D = euclidean_distances(X, Y, inverse=True)
+    assert_array_almost_equal(D, [[0.13736056]])
+
+    #Inverse vector (oreilly check)
+    X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
+    Y = [[3.0, 3.5, 1.5, 5.0, 3.5, 3.0]]
+    D = euclidean_distances(X, Y, inverse=True, squared=True)
+    assert_array_almost_equal(D, [[0.14814815]])
 
     #Vector N x 1
     X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0], [2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
