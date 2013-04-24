@@ -2,10 +2,8 @@
 # Author: Marcel Caraciolo
 # License: BSD
 
-import numpy as np
-import scipy.sparse as sp
-from nose.tools import assert_true
 from numpy.testing import assert_equal
+from nose.tools import assert_true
 from nose.tools import assert_raises
 
 from crab.base import BaseEstimator
@@ -70,16 +68,15 @@ def test_repr():
     some_est = TRecommender(a=["long_params"] * 1000)
     assert_equal(len(repr(some_est)), 432)
 
-'''
 
 def test_str():
     """Smoke test the str of the base estimator"""
-    my_estimator = MyEstimator()
+    my_estimator = MyRecommender()
     str(my_estimator)
 
 
 def test_get_params():
-    test = T(K(), K())
+    test = TRecommender(KRecommender(), KRecommender())
 
     assert_true('a__d' in test.get_params(deep=True))
     assert_true('a__d' not in test.get_params(deep=False))
@@ -87,18 +84,3 @@ def test_get_params():
     test.set_params(a__d=2)
     assert_true(test.a.d == 2)
     assert_raises(ValueError, test.set_params, a__a=2)
-
-
-def test_set_params():
-    # test nested estimator parameter setting
-    clf = Pipeline([("svc", SVC())])
-    # non-existing parameter in svc
-    assert_raises(ValueError, clf.set_params, svc__stupid_param=True)
-    # non-existing parameter of pipeline
-    assert_raises(ValueError, clf.set_params, svm__stupid_param=True)
-    # we don't currently catch if the things in pipeline are estimators
-    #bad_pipeline = Pipeline([("bad", NoEstimator())])
-    #assert_raises(AttributeError, bad_pipeline.set_params,
-            #bad__stupid_param=True)
-
-'''
