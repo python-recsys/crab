@@ -1,2 +1,0 @@
-import crab
-crab.test()
