@@ -20,7 +20,7 @@ setup(
     url='https://github.com/python-recsys/crab',
     license='BSD',
     author='Marcel Caraciolo',
-    author_email='marcel@orygens.com',
+    author_email='marcel@caraciolo.com.br',
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
     classifiers=[
