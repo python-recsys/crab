@@ -1,6 +1,5 @@
 .. -*- mode: rst -*-
 
-
 This is a community effort, and as such many people have contributed
 to it over the years.
 
