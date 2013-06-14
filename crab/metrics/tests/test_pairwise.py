@@ -140,7 +140,7 @@ def test_euclidean_distances():
     assert_array_almost_equal(D, [[1.], [1.41421356]])
 
 
-def test_manthattan_distances():
+def test_manhattan_distances():
     """ Check that the pairwise Manhattan distances computation"""
     #Idepontent Test
     X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]

@@ -1,5 +1,5 @@
 """
-The :mod:`crab.utils` module includes various utilites.
+The :mod:`crab.utils` module includes various utilities.
 """
 
 from .validation import *

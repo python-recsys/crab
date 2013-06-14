@@ -1,7 +1,7 @@
 """Compatibility fixes for older version of python, numpy and scipy
 
 If you add content to this file, please give the version of the package
-at which the fixe is no longer needed.
+at which the fix is no longer needed.
 """
 # Authors: Marcel Caraciolo <marcel@pingmind.com>
 # License: BSD

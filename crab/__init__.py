@@ -25,7 +25,7 @@ try:
         """
 
         def test(self, label='fast', verbose=1, extra_argv=['--exe'],
-                        doctests=True, coverage=False):
+                 doctests=True, coverage=False):
             """Run the full test suite
 
             Examples
@@ -34,8 +34,8 @@ try:
             example
             """
             return super(_NoseTester, self).test(label=label, verbose=verbose,
-                                    extra_argv=extra_argv,
-                                    doctests=doctests, coverage=coverage)
+                                                 extra_argv=extra_argv,
+                                                 doctests=doctests, coverage=coverage)
 
     try:
         test = _NoseTester(raise_warnings="release").test
@@ -46,17 +46,17 @@ try:
 except:
     pass
 
-
 __all__ = ['datasets', 'metrics', 'similarities', 'models', 'recommenders']
-
 
 __version__ = '0.1.git'
 
 
 class NullHandler(logging.Handler):
     """For python versions <= 2.6; same as `logging.NullHandler` in 2.7."""
+
     def emit(self, record):
         pass
+
 
 logger = logging.getLogger('crab')
 if len(logger.handlers) == 0:   # To ensure reload() doesn't add another one
