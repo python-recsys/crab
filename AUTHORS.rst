@@ -1,6 +1,5 @@
 .. -*- mode: rst -*-
 
-
 This is a community effort, and as such many people have contributed
 to it over the years.
 
@@ -24,9 +23,11 @@ People
 
   * Ricardo Caspirro , 2011
 
-  * Rodrigo Vieira , 2010 , Wiki Pages and Docummentation Support.
+  * Rodrigo Vieira , 2010 , Wiki Pages and Documentation Support.
 
   * Vinnicyus Alves, 2012
+
+  * Igor Medeiros, 2013
 
 If I forgot anyone, do not hesitate to send me an email to
 marcel@orygens.com and I'll include you in the list.

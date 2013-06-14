@@ -8,9 +8,8 @@ from .fixes import safe_copy
 
 def _assert_all_finite(X):
     """Like assert_all_finite, but only for ndarray."""
-    if X.dtype.char in np.typecodes['AllFloat'] and not np.isfinite(X.sum()) \
-      and not np.isfinite(X).all():
-            raise ValueError("Array contains NaN or infinity.")
+    if X.dtype.char in np.typecodes['AllFloat'] and not np.isfinite(X.sum()) and not np.isfinite(X).all():
+        raise ValueError("Array contains NaN or infinity.")
 
 
 def assert_all_finite(X):

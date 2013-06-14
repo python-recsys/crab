@@ -52,10 +52,10 @@ def check_pairwise_arrays(X, Y):
     Returns
     -------
     safe_X : {array-like, sparse matrix}, shape = [n_samples_a, n_features]
-        An array equal to X, guarenteed to be a numpy array.
+        An array equal to X, guaranteed to be a numpy array.
 
     safe_Y : {array-like, sparse matrix}, shape = [n_samples_b, n_features]
-        An array equal to Y if Y was not None, guarenteed to be a numpy array.
+        An array equal to Y if Y was not None, guaranteed to be a numpy array.
         If Y was None, safe_Y will be a pointer to X.
 
     """
@@ -80,7 +80,7 @@ def check_pairwise_arrays(X, Y):
 
 # Distances
 def euclidean_distances(X, Y=None, Y_norm_squared=None, squared=False,
-        inverse=False):
+                        inverse=False):
     """
     Considering the rows of X (and Y=X) as vectors, compute the
     distance matrix between each pair of vectors.
@@ -120,7 +120,7 @@ def euclidean_distances(X, Y=None, Y_norm_squared=None, squared=False,
     --------
     >>> from crab.metrics.pairwise import euclidean_distances
     >>> X = [[0, 1], [1, 1]]
-    >>> # distrance between rows of X
+    >>> # distance between rows of X
     >>> euclidean_distances(X, X)
     array([[ 0.,  1.],
            [ 1.,  0.]])
@@ -156,7 +156,7 @@ def euclidean_distances(X, Y=None, Y_norm_squared=None, squared=False,
         YY = atleast2d_or_csr(Y_norm_squared)
         if YY.shape != (1, Y.shape[0]):
             raise ValueError(
-                        "Incompatible dimensions for Y and Y_norm_squared")
+                "Incompatible dimensions for Y and Y_norm_squared")
 
     # TODO: a faster Cython implementation would do the clipping of negative
     # values in a single pass over the output matrix.
@@ -175,7 +175,8 @@ def euclidean_distances(X, Y=None, Y_norm_squared=None, squared=False,
 
     return distances if squared else np.sqrt(distances)
 
-euclidian_distances = euclidean_distances  # both spelling for backward compat
+
+euclidian_distances = euclidean_distances  # both spelling for backward compatibility
 
 
 def manhattan_distances(X, Y):
@@ -215,7 +216,7 @@ def manhattan_distances(X, Y):
 
     if issparse(X) or issparse(Y):
         raise ValueError("manhattan_distance does"
-                 "not support sparse matrices.")
+                         "not support sparse matrices.")
     X, Y = check_pairwise_arrays(X, Y)
     n_samples_X, n_features_X = X.shape
     n_samples_Y, n_features_Y = Y.shape
@@ -531,8 +532,8 @@ def spearman_coefficient(X, Y):
     if X is Y:
         X = Y = np.asanyarray(X, dtype=[('x', 'S30'), ('y', float)])
     else:
-        X = np.asanyarray(X,  dtype=[('x', 'S30'), ('y', float)])
-        Y = np.asanyarray(Y,  dtype=[('x', 'S30'), ('y', float)])
+        X = np.asanyarray(X, dtype=[('x', 'S30'), ('y', float)])
+        Y = np.asanyarray(Y, dtype=[('x', 'S30'), ('y', float)])
 
     if X.shape[1] != Y.shape[1]:
         raise ValueError("Incompatible dimension for X and Y matrices")
@@ -643,7 +644,7 @@ def loglikehood_coefficient(n_items, X, Y):
             else:
                 nX = arrayX.size
                 nY = arrayY.size
-                if (nX - XY.size == 0)  or (n_items - nY) == 0:
+                if (nX - XY.size == 0) or (n_items - nY) == 0:
                     result[i].append(1.0)
                 else:
                     logLikelihood = twoLogLambda(float(XY.size),
