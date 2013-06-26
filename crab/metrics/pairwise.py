@@ -256,7 +256,7 @@ def pearson_correlation(X, Y):
     >>> pearson_correlation(X, X)
     array([[ 1., 1.],
            [ 1., 1.]])
-    >>> pearson_correlation(X, [[3.0, 3.5, 1.5, 5.0, 3.5,3.0]])
+    >>> pearson_correlation(X, [[3.0, 3.5, 1.5, 5.0, 3.5, 3.0]])
     array([[ 0.39605902],
                [ 0.39605902]])
     """
@@ -280,9 +280,76 @@ def pearson_correlation(X, Y):
     if X.shape[1] != Y.shape[1]:
         raise ValueError("Incompatible dimension for X and Y matrices")
 
-    XY = ssd.cdist(X, Y, 'correlation', 2)
+    XY = ssd.cdist(X, Y, 'correlation')
 
     return 1 - XY
+
+
+def adjusted_cosine(X, Y, EFV):
+    """
+    Considering the rows of X (and Y=X) as vectors, compute the
+    distance matrix between each pair of vectors after normalize or adjust
+    the vector using the N vector. EFV vector contains expected value for
+    each feature from vectors X and Y, i.e., the mean of the values
+    of each feature vector from X and Y.
+
+    This correlation implementation is equivalent to the cosine similarity
+    since the data it receives is assumed to be centered -- mean is 0. The
+    correlation may be interpreted as the cosine of the angle between the two
+    vectors defined by the users preference values.
+
+    Parameters
+    ----------
+    X : {array-like, sparse matrix}, shape = [n_samples_1, n_features]
+
+    Y : {array-like, sparse matrix}, shape = [n_samples_2, n_features]
+
+    EFV: {array-like, sparse matrix}, shape = [n_samples_3, n_features]
+
+    Returns
+    -------
+    distances : {array, sparse matrix}, shape = [n_samples_1, n_samples_2]
+
+    Examples
+    --------
+    >>> from crab.metrics.pairwise import adjusted_cosine
+    >>> X = [[1.0, 5.0, 4.0]]
+    >>> Y = [[2.0, 5.0, 5.0]]
+    >>> N = [[3.0, 3.5, 4.0]]
+    >>> # distance between rows of X
+    >>> adjusted_cosine(X, X, N)
+    array([[ 1.]])
+    >>> adjusted_cosine(X, Y, N)
+    array([[ 0.82462113]])
+    """
+
+    X, Y = check_pairwise_arrays(X, Y)
+    #TODO: fix next line
+    EFV, _ = check_pairwise_arrays(EFV, None)
+
+    # should not need X_norm_squared because if you could precompute that as
+    # well as Y, then you should just pre-compute the output and not even
+    # call this function.
+
+    #TODO: Fix to work with sparse matrices.
+    if issparse(X) or issparse(Y) or issparse(EFV):
+        raise ValueError('Adjusted cosine does not yet support sparse matrices.')
+
+    if X is Y:
+        X = Y = np.asanyarray(X)
+    else:
+        X = np.asanyarray(X)
+        Y = np.asanyarray(Y)
+
+    if X.shape[1] != Y.shape[1] != EFV.shape[1]:
+        raise ValueError("Incompatible dimension for X, Y and N matrices")
+
+    X = X - EFV
+    Y = Y - EFV
+
+    XY = 1 - ssd.cdist(X, Y, 'cosine')
+
+    return XY
 
 
 def jaccard_coefficient(X, Y):
