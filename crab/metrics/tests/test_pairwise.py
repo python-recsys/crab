@@ -10,7 +10,7 @@ from ..pairwise import euclidean_distances, manhattan_distances
 from ..pairwise import pearson_correlation, jaccard_coefficient
 from ..pairwise import tanimoto_coefficient, cosine_distances
 from ..pairwise import loglikehood_coefficient, sorensen_coefficient
-from ..pairwise import spearman_coefficient
+from ..pairwise import spearman_coefficient, adjusted_cosine
 
 
 def test_check_dense_matrices():
@@ -122,7 +122,7 @@ def test_euclidean_distances():
     X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0], [2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
     Y = [[3.0, 3.5, 1.5, 5.0, 3.5, 3.0], [2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
     D = euclidean_distances(X, Y)
-    assert_array_almost_equal(D, [[2.39791576, 0.], [2.39791576,  0.]])
+    assert_array_almost_equal(D, [[2.39791576, 0.], [2.39791576, 0.]])
 
     X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0], [3.0, 3.5, 1.5, 5.0, 3.5, 3.0]]
     D = euclidean_distances(X, X)
@@ -230,6 +230,59 @@ def test_pearson_correlation():
     X = csr_matrix(X)
     Y = csr_matrix(Y)
     assert_raises(ValueError, pearson_correlation, X, Y)
+
+
+def test_adjusted_cosine():
+    """ Check that the pairwise Pearson distances computation"""
+    #Idepontent Test
+    X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
+    EFV = [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]
+    D = adjusted_cosine(X, X, EFV)
+    assert_array_almost_equal(D, [[1.]])
+
+    #Vector x Non Vector
+    X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
+    Y = [[]]
+    EFV = [[]]
+    assert_raises(ValueError, adjusted_cosine, X, Y, EFV)
+
+    #Vector A x Vector B
+    X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
+    Y = [[3.0, 3.5, 1.5, 5.0, 3.5, 3.0]]
+    EFV = [[2.0, 2.0, 2.0, 2.0, 2.0, 2.0]]
+    D = adjusted_cosine(X, Y, EFV)
+    assert_array_almost_equal(D, [[0.80952381]])
+
+    #Vector N x 1
+    X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0], [2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
+    Y = [[3.0, 3.5, 1.5, 5.0, 3.5, 3.0]]
+    EFV = [[2.0, 2.0, 2.0, 2.0, 2.0, 2.0]]
+    D = adjusted_cosine(X, Y, EFV)
+    assert_array_almost_equal(D, [[0.80952381], [0.80952381]])
+
+    #N-Dimmensional Vectors
+    X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0], [2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
+    Y = [[3.0, 3.5, 1.5, 5.0, 3.5, 3.0], [2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
+    EFV = [[2.0, 2.0, 2.0, 2.0, 2.0, 2.0]]
+    D = adjusted_cosine(X, Y, EFV)
+    assert_array_almost_equal(D, [[0.80952381, 1.], [0.80952381, 1.]])
+
+    X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0], [3.0, 3.5, 1.5, 5.0, 3.5, 3.0]]
+    EFV = [[2.0, 2.0, 2.0, 2.0, 2.0, 2.0]]
+    D = adjusted_cosine(X, X, EFV)
+    assert_array_almost_equal(D, [[1., 0.80952381], [0.80952381, 1.]])
+
+    X = [[1.0, 0.0], [1.0, 1.0]]
+    Y = [[0.0, 0.0]]
+    EFV = [[0.0, 0.0]]
+    D = adjusted_cosine(X, Y, EFV)
+    assert_array_almost_equal(D, [[np.nan], [np.nan]])
+
+    #Test Sparse Matrices
+    X = csr_matrix(X)
+    Y = csr_matrix(Y)
+    EFV = csr_matrix(EFV)
+    assert_raises(ValueError, adjusted_cosine, X, Y, EFV)
 
 
 def test_jaccard_distances():
@@ -395,7 +448,7 @@ def test_loglikehood_distances():
     #BUG FIX: How to fix for multi-dimm arrays
 
     #Vector N x 1
-    X = [['a', 'b', 'c', 'd'],  ['e', 'f', 'g', 'h']]
+    X = [['a', 'b', 'c', 'd'], ['e', 'f', 'g', 'h']]
     Y = [['a', 'b', 'c', 'k']]
     n_items = 8
     D = loglikehood_coefficient(n_items, X, Y)
