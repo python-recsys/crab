@@ -204,12 +204,12 @@ def manhattan_distances(X, Y):
     Examples
     --------
     >>> from crab.metrics.pairwise  import manhattan_distances
-    >>> X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0],[2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
+    >>> X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0], [2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
     >>> # distance between rows of X
     >>> manhattan_distances(X, X)
     array([[ 1.,  1.],
            [ 1.,  1.]])
-    >>> manhattan_distances(X, [[3.0, 3.5, 1.5, 5.0, 3.5,3.0]])
+    >>> manhattan_distances(X, [[3.0, 3.5, 1.5, 5.0, 3.5, 3.0]])
     array([[ 0.25],
           [ 0.25]])
     """
@@ -236,7 +236,7 @@ def pearson_correlation(X, Y):
     This correlation implementation is equivalent to the cosine similarity
     since the data it receives is assumed to be centered -- mean is 0. The
     correlation may be interpreted as the cosine of the angle between the two
-    vectors defined by the users' preference values.
+    vectors defined by the users preference values.
 
     Parameters
     ----------
@@ -285,18 +285,24 @@ def pearson_correlation(X, Y):
     return 1 - XY
 
 
-def adjusted_cosine(X, Y, EFV):
+def adjusted_cosine(X, Y, E):
     """
+    For item based recommender systems, the basic cosine measure and Pearson correlation measure does not take the
+    differences in the average rating behavior of the users into account. Some users tend to be too harsh while others
+    tend to do be too soft. This behaviour, known as "grade inflation", is solved by using the adjusted cosine measure,
+    which subtracts the user average from the item vector of ratings. The values for the adjusted cosine
+    measure correspondingly range from −1 to +1, as in the Pearson measure. The adjusted cosine distance is obtained
+    adding 1 to the measure value.
+
+    This formula is from a seminal article in collaborative filtering: "Item-based collaborative filtering
+    recommendation algorithms" by Badrul Sarwar, George Karypis, Joseph Konstan, and John Reidl
+    (http://www.grouplens.org/papers/pdf/www10_sarwar.pdf)
+
     Considering the rows of X (and Y=X) as vectors, compute the
     distance matrix between each pair of vectors after normalize or adjust
-    the vector using the N vector. EFV vector contains expected value for
+    the vector using the EFV vector. EFV vector contains expected value for
     each feature from vectors X and Y, i.e., the mean of the values
     of each feature vector from X and Y.
-
-    This correlation implementation is equivalent to the cosine similarity
-    since the data it receives is assumed to be centered -- mean is 0. The
-    correlation may be interpreted as the cosine of the angle between the two
-    vectors defined by the users preference values.
 
     Parameters
     ----------
@@ -304,7 +310,7 @@ def adjusted_cosine(X, Y, EFV):
 
     Y : {array-like, sparse matrix}, shape = [n_samples_2, n_features]
 
-    EFV: {array-like, sparse matrix}, shape = [n_samples_3, n_features]
+    E: {array-like, sparse matrix}, shape = [n_samples_3, n_features]
 
     Returns
     -------
@@ -313,26 +319,30 @@ def adjusted_cosine(X, Y, EFV):
     Examples
     --------
     >>> from crab.metrics.pairwise import adjusted_cosine
+    >>> # This example comes from the book "A programmer's Guide To Data Mining" by Ron Zacharski, chapter 3, pag 17.
+    >>> # Copy online at: http://guidetodatamining.com/guide/ch3/DataMining-ch3.pdf
     >>> X = [[1.0, 5.0, 4.0]]
     >>> Y = [[2.0, 5.0, 5.0]]
-    >>> N = [[3.0, 3.5, 4.0]]
-    >>> # distance between rows of X
-    >>> adjusted_cosine(X, X, N)
+    >>> # Vector of expected values of the features (user ratings in item based context)
+    >>> E = [[3.0, 3.5, 4.0]]
+    >>> # distance between rows of X adjusted by the rows of E
+    >>> adjusted_cosine(X, X, E)
     array([[ 1.]])
-    >>> adjusted_cosine(X, Y, N)
+    >>> # distance between rows of X and Y adjusted by the rows of E
+    >>> adjusted_cosine(X, Y, E)
     array([[ 0.82462113]])
     """
 
     X, Y = check_pairwise_arrays(X, Y)
     #TODO: fix next line
-    EFV, _ = check_pairwise_arrays(EFV, None)
+    E, _ = check_pairwise_arrays(E, None)
 
     # should not need X_norm_squared because if you could precompute that as
     # well as Y, then you should just pre-compute the output and not even
     # call this function.
 
     #TODO: Fix to work with sparse matrices.
-    if issparse(X) or issparse(Y) or issparse(EFV):
+    if issparse(X) or issparse(Y) or issparse(E):
         raise ValueError('Adjusted cosine does not yet support sparse matrices.')
 
     if X is Y:
@@ -341,11 +351,11 @@ def adjusted_cosine(X, Y, EFV):
         X = np.asanyarray(X)
         Y = np.asanyarray(Y)
 
-    if X.shape[1] != Y.shape[1] != EFV.shape[1]:
-        raise ValueError("Incompatible dimension for X, Y and N matrices")
+    if X.shape[1] != Y.shape[1] != E.shape[1]:
+        raise ValueError("Incompatible dimension for X, Y and EFV matrices")
 
-    X = X - EFV
-    Y = Y - EFV
+    X = X - E
+    Y = Y - E
 
     XY = 1 - ssd.cdist(X, Y, 'cosine')
 
