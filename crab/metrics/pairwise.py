@@ -95,6 +95,17 @@ def euclidean_distances(X, Y=None, Y_norm_squared=None, squared=False,
     remains unchanged, then the right-most dot-product `dot(y, y)` can be
     pre-computed.
 
+
+    An implementation of a "similarity" based on the Euclidean "distance"
+    between two users X and Y. Thinking of items as dimensions and
+    preferences as points along those dimensions, a distance is computed
+    using all items (dimensions) where both users have expressed a preference
+    for that item. This is simply the square root of the sum of the squares
+    of differences in position (preference) along each dimension.
+
+    The similarity could be computed as 1 / (1 + distance), so the resulting
+    values are in the range (0,1].
+
     Parameters
     ----------
     X : {array-like, sparse matrix}, shape = [n_samples_1, n_features]
@@ -190,6 +201,8 @@ def manhattan_distances(X, Y):
     The Manhattan distance is the simple sum of the horizontal and vertical
     components, whereas the diagonal distance might be computed by applying the
     Pythagorean theorem.
+
+    The resulting unbounded distance is then mapped between 0 and 1.
 
     Parameters
     ----------
