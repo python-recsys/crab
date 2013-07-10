@@ -6,31 +6,31 @@ from numpy.testing import assert_equal
 from nose.tools import assert_true
 from nose.tools import assert_raises
 
-from crab.base import BaseEstimator
+from crab.base import BaseRecommender
 
 
 #############################################################################
 # A few test classes
-class MyRecommender(BaseEstimator):
+class MyRecommender(BaseRecommender):
 
     def __init__(self, model=None, with_preference=False):
         self.model = model
         self.with_preference = with_preference
 
 
-class KRecommender(BaseEstimator):
+class KRecommender(BaseRecommender):
     def __init__(self, c=None, d=None):
         self.c = c
         self.d = d
 
 
-class TRecommender(BaseEstimator):
+class TRecommender(BaseRecommender):
     def __init__(self, a=None, b=None):
         self.a = a
         self.b = b
 
 
-class BuggyRecommender(BaseEstimator):
+class BuggyRecommender(BaseRecommender):
     " A buggy recommender that does not set its parameters right. "
 
     def __init__(self, a=None):
@@ -48,7 +48,7 @@ class NoRecommender(object):
         return None
 
 
-class VargRecommender(BaseEstimator):
+class VargRecommender(BaseRecommender):
     """Crab recommenders shouldn't have vargs."""
     def __init__(self, *vargs):
         pass
