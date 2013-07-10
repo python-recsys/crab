@@ -61,6 +61,10 @@ source directory (you will need to have nosetest installed)::
 
     python -c "import crab; crab.test()"
 
+Or you can test by calling::
+    
+    make test
+
 See web page http://python-recsys.github.com/install.html#testing
 for more information.
 

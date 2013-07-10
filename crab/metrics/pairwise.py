@@ -52,10 +52,10 @@ def check_pairwise_arrays(X, Y):
     Returns
     -------
     safe_X : {array-like, sparse matrix}, shape = [n_samples_a, n_features]
-        An array equal to X, guarenteed to be a numpy array.
+        An array equal to X, guaranteed to be a numpy array.
 
     safe_Y : {array-like, sparse matrix}, shape = [n_samples_b, n_features]
-        An array equal to Y if Y was not None, guarenteed to be a numpy array.
+        An array equal to Y if Y was not None, guaranteed to be a numpy array.
         If Y was None, safe_Y will be a pointer to X.
 
     """
@@ -80,7 +80,7 @@ def check_pairwise_arrays(X, Y):
 
 # Distances
 def euclidean_distances(X, Y=None, Y_norm_squared=None, squared=False,
-        inverse=False):
+                        inverse=False):
     """
     Considering the rows of X (and Y=X) as vectors, compute the
     distance matrix between each pair of vectors.
@@ -131,7 +131,7 @@ def euclidean_distances(X, Y=None, Y_norm_squared=None, squared=False,
     --------
     >>> from crab.metrics.pairwise import euclidean_distances
     >>> X = [[0, 1], [1, 1]]
-    >>> # distrance between rows of X
+    >>> # distance between rows of X
     >>> euclidean_distances(X, X)
     array([[ 0.,  1.],
            [ 1.,  0.]])
@@ -167,7 +167,7 @@ def euclidean_distances(X, Y=None, Y_norm_squared=None, squared=False,
         YY = atleast2d_or_csr(Y_norm_squared)
         if YY.shape != (1, Y.shape[0]):
             raise ValueError(
-                        "Incompatible dimensions for Y and Y_norm_squared")
+                "Incompatible dimensions for Y and Y_norm_squared")
 
     # TODO: a faster Cython implementation would do the clipping of negative
     # values in a single pass over the output matrix.
@@ -186,7 +186,8 @@ def euclidean_distances(X, Y=None, Y_norm_squared=None, squared=False,
 
     return distances if squared else np.sqrt(distances)
 
-euclidian_distances = euclidean_distances  # both spelling for backward compat
+
+euclidian_distances = euclidean_distances  # both spelling for backward compatibility
 
 
 def manhattan_distances(X, Y):
@@ -216,19 +217,19 @@ def manhattan_distances(X, Y):
     Examples
     --------
     >>> from crab.metrics.pairwise  import manhattan_distances
-    >>> X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0],[2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
+    >>> X = [[2.5, 3.5, 3.0, 3.5, 2.5, 3.0], [2.5, 3.5, 3.0, 3.5, 2.5, 3.0]]
     >>> # distance between rows of X
     >>> manhattan_distances(X, X)
     array([[ 1.,  1.],
            [ 1.,  1.]])
-    >>> manhattan_distances(X, [[3.0, 3.5, 1.5, 5.0, 3.5,3.0]])
+    >>> manhattan_distances(X, [[3.0, 3.5, 1.5, 5.0, 3.5, 3.0]])
     array([[ 0.25],
           [ 0.25]])
     """
 
     if issparse(X) or issparse(Y):
         raise ValueError("manhattan_distance does"
-                 "not support sparse matrices.")
+                         "not support sparse matrices.")
     X, Y = check_pairwise_arrays(X, Y)
     n_samples_X, n_features_X = X.shape
     n_samples_Y, n_features_Y = Y.shape
@@ -248,7 +249,7 @@ def pearson_correlation(X, Y):
     This correlation implementation is equivalent to the cosine similarity
     since the data it receives is assumed to be centered -- mean is 0. The
     correlation may be interpreted as the cosine of the angle between the two
-    vectors defined by the users' preference values.
+    vectors defined by the users preference values.
 
     Parameters
     ----------
@@ -268,7 +269,7 @@ def pearson_correlation(X, Y):
     >>> pearson_correlation(X, X)
     array([[ 1., 1.],
            [ 1., 1.]])
-    >>> pearson_correlation(X, [[3.0, 3.5, 1.5, 5.0, 3.5,3.0]])
+    >>> pearson_correlation(X, [[3.0, 3.5, 1.5, 5.0, 3.5, 3.0]])
     array([[ 0.39605902],
                [ 0.39605902]])
     """
@@ -292,9 +293,86 @@ def pearson_correlation(X, Y):
     if X.shape[1] != Y.shape[1]:
         raise ValueError("Incompatible dimension for X and Y matrices")
 
-    XY = ssd.cdist(X, Y, 'correlation', 2)
+    XY = ssd.cdist(X, Y, 'correlation')
 
     return 1 - XY
+
+
+def adjusted_cosine(X, Y, E):
+    """
+    For item based recommender systems, the basic cosine measure and Pearson correlation measure does not take the
+    differences in the average rating behavior of the users into account. Some users tend to be too harsh while others
+    tend to do be too soft. This behaviour, known as "grade inflation", is solved by using the adjusted cosine measure,
+    which subtracts the user average from the item vector of ratings. The values for the adjusted cosine
+    measure correspondingly range from −1 to +1, as in the Pearson measure. The adjusted cosine distance is obtained
+    adding 1 to the measure value.
+
+    This formula is from a seminal article in collaborative filtering: "Item-based collaborative filtering
+    recommendation algorithms" by Badrul Sarwar, George Karypis, Joseph Konstan, and John Reidl
+    (http://www.grouplens.org/papers/pdf/www10_sarwar.pdf)
+
+    Considering the rows of X (and Y=X) as vectors, compute the
+    distance matrix between each pair of vectors after normalize or adjust
+    the vector using the EFV vector. EFV vector contains expected value for
+    each feature from vectors X and Y, i.e., the mean of the values
+    of each feature vector from X and Y.
+
+    Parameters
+    ----------
+    X : {array-like, sparse matrix}, shape = [n_samples_1, n_features]
+
+    Y : {array-like, sparse matrix}, shape = [n_samples_2, n_features]
+
+    E: {array-like, sparse matrix}, shape = [n_samples_3, n_features]
+
+    Returns
+    -------
+    distances : {array, sparse matrix}, shape = [n_samples_1, n_samples_2]
+
+    Examples
+    --------
+    >>> from crab.metrics.pairwise import adjusted_cosine
+    >>> # This example comes from the book "A programmer's Guide To Data Mining" by Ron Zacharski, chapter 3, pag 17.
+    >>> # Copy online at: http://guidetodatamining.com/guide/ch3/DataMining-ch3.pdf
+    >>> X = [[1.0, 5.0, 4.0]]
+    >>> Y = [[2.0, 5.0, 5.0]]
+    >>> # Vector of expected values of the features (user ratings in item based context)
+    >>> E = [[3.0, 3.5, 4.0]]
+    >>> # distance between rows of X adjusted by the rows of E
+    >>> adjusted_cosine(X, X, E)
+    array([[ 1.]])
+    >>> # distance between rows of X and Y adjusted by the rows of E
+    >>> adjusted_cosine(X, Y, E)
+    array([[ 0.82462113]])
+    """
+
+    X, Y = check_pairwise_arrays(X, Y)
+    #TODO: fix next line
+    E, _ = check_pairwise_arrays(E, None)
+
+    # should not need X_norm_squared because if you could precompute that as
+    # well as Y, then you should just pre-compute the output and not even
+    # call this function.
+
+    #TODO: Fix to work with sparse matrices.
+    if issparse(X) or issparse(Y) or issparse(E):
+        raise ValueError('Adjusted cosine does not yet support sparse matrices.')
+
+    if X is Y:
+        X = Y = np.asanyarray(X)
+    else:
+        X = np.asanyarray(X)
+        Y = np.asanyarray(Y)
+
+    if X.shape[1] != Y.shape[1] != E.shape[1]:
+        raise ValueError("Incompatible dimension for X, Y and EFV matrices")
+
+    X = X - E
+    Y = Y - E
+
+    XY = 1 - ssd.cdist(X, Y, 'cosine')
+
+    return XY
 
 
 def jaccard_coefficient(X, Y):
@@ -544,8 +622,8 @@ def spearman_coefficient(X, Y):
     if X is Y:
         X = Y = np.asanyarray(X, dtype=[('x', 'S30'), ('y', float)])
     else:
-        X = np.asanyarray(X,  dtype=[('x', 'S30'), ('y', float)])
-        Y = np.asanyarray(Y,  dtype=[('x', 'S30'), ('y', float)])
+        X = np.asanyarray(X, dtype=[('x', 'S30'), ('y', float)])
+        Y = np.asanyarray(Y, dtype=[('x', 'S30'), ('y', float)])
 
     if X.shape[1] != Y.shape[1]:
         raise ValueError("Incompatible dimension for X and Y matrices")
@@ -656,7 +734,7 @@ def loglikehood_coefficient(n_items, X, Y):
             else:
                 nX = arrayX.size
                 nY = arrayY.size
-                if (nX - XY.size == 0)  or (n_items - nY) == 0:
+                if (nX - XY.size == 0) or (n_items - nY) == 0:
                     result[i].append(1.0)
                 else:
                     logLikelihood = twoLogLambda(float(XY.size),
