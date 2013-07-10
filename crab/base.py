@@ -12,7 +12,7 @@ import warnings
 from .utils.format import _pprint
 
 
-class BaseEstimator(object):
+class BaseRecommender(object):
     """Base Class for Recommenders that suggest items for users.
 
     Should not be used directly, use derived classes instead
