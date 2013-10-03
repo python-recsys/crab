@@ -5,6 +5,7 @@ Base Recommender Models.
 """
 
 # Authors: Marcel Caraciolo <marcel@caraciolo.com.br>
+# Based on scikit-learn's base.py, written by Gael Varoquaux.
 # License: BSD Style.
 
 import inspect

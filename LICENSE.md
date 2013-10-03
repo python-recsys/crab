@@ -1,4 +1,5 @@
 Copyright (c) 2012, Python-Recsys
+Parts Copyright (c) 2007-2013 The scikit-learn developers, see COPYING
 
 All rights reserved.
 
