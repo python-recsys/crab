@@ -1,17 +1,23 @@
 ****************************
-Python Data Analysis Library
+Python Recommender System Library
 ****************************
 
-*pandas* is an open source, BSD-licensed library providing high-performance,
-easy-to-use data structures and data analysis tools for the `Python
-<http://www.python.org/>`__ programming language.
+*crab* is an open source, BSD-licensed `Python <http://www.python.org/>`__ framework for building
+recommender engines integrated with the world scientific Python packages
+(numpy, scipy, matplotlib, etc.)
 
-0.12.0 released (July 24, 2013)
+The engine aims to provide a rich set of components from which you can construct a customized recommender system 
+from a set of algorithms and be usable in various contexts: **science and engineering** .
+
+0.1.2 released (November 02, 2013)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The new major 0.12 release is out. This includes the usual large slate of bug
-fixes and performance improvements, and many new important features. Some
-highlights among new features include:
+The major 0.1.2 release is out. Since 2012 we decided to migrate all the source
+code for this new repository `python-recsys`. The old organization muricoca is now
+terminated, since the name was not adequate for the project.
+
+New important features and architecture for crab. Some highlights among new features
+include:
 
   - Integrated JSON reading and writing with the `read_json` functions and
     methods like `DataFrame.to_json`.
@@ -22,7 +28,7 @@ highlights among new features include:
 Please check out the `What's New page
 <http://pandas.pydata.org/pandas-docs/stable/whatsnew.html>`_ for much more detail.
 
-Find binaries and source archives for v0.12.0 are `available now <getpandas.html>`_
+Find binaries and source archives for v0.1.2.0 are `available now <getpandas.html>`_
 
 Note we are posting stable daily development builds of the pandas windows
 binaries `here <http://pandas.pydata.org/pandas-build/dev/>`_. You can download
@@ -40,7 +46,7 @@ Quick vignette
     tour of pandas</a> from <a href="http://vimeo.com/user10077863">Wes
     McKinney</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
 
-What problem does *pandas* solve?
+What problem does *crab* solve?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Python has long been great for data munging and preparation, but less so for

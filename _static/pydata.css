@@ -46,7 +46,7 @@ div.header-wrapper {
 
 /* Default body styles */
 a {
-  color: #A31E39;
+  color: white;
 }
 
 div.bodywrapper a, div.footer a {
@@ -96,7 +96,7 @@ h2 {
 
 a.headerlink {
   visibility: hidden;
-  color: #A31E39;
+  color: white;
   padding-left: .3em;
 }
 
@@ -162,11 +162,11 @@ div.header div.rel {
   border-bottom: 1px solid #AAA;
   padding: 7px;
   text-align: center;
-  background-color: #D6E4E1;
+  background-color: #b5742f;
 }
 
 div.header div.rel a {
-  color: #A31E39;
+  color: white;
   letter-spacing: .05em;
   font-weight: bold;
 }
@@ -293,7 +293,7 @@ div.sphinxsidebar h4 {
 div.sphinxsidebar .tile {
   border: 1px solid #8C9C9A;
   border-radius: 1px;
-  background-color: #D6E4E1;
+  background-color: #b5742f;
   padding-left: 0.5em;
   margin: 1em 0;
 }
