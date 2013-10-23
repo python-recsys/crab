@@ -163,6 +163,7 @@ div.header div.rel {
   background-color: #b5742f;
   box-shadow: inset 0px 1px 3px #333;
   border: 1px solid #fff;
+  border-radius: 5px;
 }
 
 div.header div.rel a {
@@ -298,6 +299,7 @@ div.sphinxsidebar .tile {
   margin: 1em 0;
   box-shadow: inset 0px 1px 3px #333;
   background-color: #b5742f;
+  border-radius: 5px;
 }
 
 div.sphinxsidebar ul {
