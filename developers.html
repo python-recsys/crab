@@ -1,0 +1,511 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-27880019-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <title>Developers &mdash; pandas: Python Data Analysis Library</title>
+    <link rel="stylesheet" href="_static/pydata.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="pandas: Python Data Analysis Library" href="index.html" />
+    <link rel="prev" title="pandas Papers" href="talks.html" /> 
+  </head>
+  <body>
+<div class="header-wrapper">
+	<div class="header">
+		<div class="logo">
+			<a href="index.html"><img class="logo" src="_static/pandas_logo.png" alt="Logo"/></a>
+		</div>
+
+        <div class="rel">
+			<a href="index.html">overview</a> //
+			<a href="getpandas.html">get pandas</a> //
+			<a href="http://pandas.pydata.org/pandas-docs/stable">documentation</a> //
+			<a href="community.html">community</a> //
+			<a href="talks.html">talks</a>
+		</div>
+
+	</div>
+</div>
+
+<div class="content-wrapper">
+<div class="content">
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+
+<div class="sidebarblock">
+	<h3>Versions</h3>
+
+	<div class="tile">
+		<h4>Official Release</h4>
+     	0.12.0 &ndash; July 2013<br/>
+    	<a href="getpandas.html">downloads</a> // <a href="http://pandas.pydata.org/pandas-docs/stable">docs</a> // <a href="http://pandas.pydata.org/pandas-docs/stable/pandas.pdf">pdf</a>
+	</div>
+
+	<div class="tile">
+		<h4>Development</h4>
+    	0.13 - October 2013<br/>
+    	<a href="https://github.com/pydata/pandas">github</a> // <a href="http://pandas.pydata.org/pandas-docs/dev">docs</a> // <a href="http://pandas.pydata.org/pandas-docs/dev/pandas.pdf">pdf</a>
+    </div>
+
+    <div class="tile">
+      <h4>Previous Releases</h4>
+    <div>
+        0.11.0 -
+        <a href="http://pypi.python.org/pypi/pandas/0.11.0/#downloads">download</a>          //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.11.0/">docs</a> //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.11.0/pandas.pdf">pdf</a>
+      </div>
+    <div>
+        0.10.1 -
+        <a href="http://pypi.python.org/pypi/pandas/0.10.1/#downloads">download</a>          //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.10.1/">docs</a> //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.10.1/pandas.pdf">pdf</a>
+      </div>
+    <div>
+        0.10.0 -
+        <a href="http://pypi.python.org/pypi/pandas/0.10.0/#downloads">download</a>          //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.10.0/">docs</a> //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.10.0/pandas.pdf">pdf</a>
+      </div>
+    <div>
+        0.9.1 -
+        <a href="http://pypi.python.org/pypi/pandas/0.9.1/#downloads">download</a>          //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.9.1/">docs</a> //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.9.1/pandas.pdf">pdf</a>
+      </div>
+    <div>
+        0.9.0 -
+        <a href="http://pypi.python.org/pypi/pandas/0.9.0/#downloads">download</a>          //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.9.0/">docs</a> //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.9.0/pandas.pdf">pdf</a>
+      </div>
+    <div>
+        0.8.1 -
+        <a href="http://pypi.python.org/pypi/pandas/0.8.1/#downloads">download</a>          //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.8.1/">docs</a> //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.8.1/pandas.pdf">pdf</a>
+      </div>
+      <div>
+        0.8.0 -
+        <a href="http://pypi.python.org/pypi/pandas/0.8.0/#downloads">download</a>          //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.8.0/">docs</a> //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.8.0/pandas.pdf">pdf</a>
+      </div>
+      <div>
+        0.7.3 -
+        <a href="http://pypi.python.org/pypi/pandas/0.7.3/#downloads">download</a>          //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.7.3/">docs</a> //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.7.3/pandas.pdf">pdf</a>
+      </div>
+      <!-- <div> -->
+      <!--   0.7.2 - -->
+      <!--   <a href="http://pypi.python.org/pypi/pandas/0.7.2/#downloads">download</a>          // -->
+      <!--   <a href="http://pandas.pydata.org/pandas-docs/version/0.7.2/">docs</a> // -->
+      <!--   <a href="http://pandas.pydata.org/pandas-docs/version/0.7.2/pandas.pdf">pdf</a> -->
+      <!-- </div> -->
+      <!-- <div> -->
+      <!--   0.7.1 - -->
+      <!--   <a href="http://pypi.python.org/pypi/pandas/0.7.1/#downloads">download</a>          // -->
+      <!--   <a href="http://pandas.pydata.org/pandas-docs/version/0.7.1/">docs</a> // -->
+      <!--   <a href="http://pandas.pydata.org/pandas-docs/version/0.7.1/pandas.pdf">pdf</a> -->
+      <!-- </div> -->
+      <!-- <div> -->
+      <!--   0.7.0 - -->
+      <!--   <a href="http://pypi.python.org/pypi/pandas/0.7.0/#downloads">download</a>          // -->
+      <!--   <a href="http://pandas.pydata.org/pandas-docs/version/0.7.0/">docs</a> // -->
+      <!--   <a href="http://pandas.pydata.org/pandas-docs/version/0.7.0/pandas.pdf">pdf</a> -->
+      <!-- </div> -->
+
+
+    </div>
+
+
+</div>
+
+<div class="sidebarblock">
+	<h3>About Pandas</h3>
+  	<ul>
+    	<li><a href="http://pandas.pydata.org/pandas-docs/dev/whatsnew.html">What's New</a></li>
+		<li><a href="http://pandas.pydata.org/pandas-docs/stable/install.html">Getting Started</a></li>
+		<li><a href="https://github.com/pydata/pandas/issues">Issue Tracker</a></li>
+    	<li><a href="http://pandas.pydata.org/pandas-docs/stable/overview.html#license">License</a></li>
+		<li><a href="developers.html">Developer Page</a></li>
+		<li><a href="http://pandas.pydata.org/pandas-docs/vbench">Performance Benchmarks</a></li>
+  	</ul>
+</div>
+
+<div class="sidebarblock">
+<h3>Get the book</h3>
+   <a href="http://www.kqzyfj.com/click-7040302-11260198?url=http%3A%2F%2Fshop.oreilly.com%2Fproduct%2F0636920023784.do&cjsku=0636920023784"><img src="_static/pydata_cover.jpg" alt="Python for Data Analysis", width=180, height=240></a>
+</div>
+
+<div class="sidebarblock">
+	<h3>Related Tools</h3>
+	<ul>
+    	<li><a href="http://www.scipy.org/">SciPy</a></li>
+    	<li><a href="http://www.numpy.org/">NumPy</a></li>
+    	<li><a href="http://statsmodels.sourceforge.net/">StatsModels</a></li>
+    	<li><a href="http://scikit-learn.org">scikit-learn</a></li>
+		<li><a href="http://ipython.org/">IPython</a></li>
+		<li><a href="http://matplotlib.sourceforge.net/">matplotlib</a></li>
+    	<li><a href="https://github.com/pydata/vbench">vbench</a></li>
+  	</ul>
+</div>
+
+</div>
+</div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="developers">
+<h1>Developers<a class="headerlink" href="#developers" title="Permalink to this headline">¶</a></h1>
+<p>So you want to contribute to <em>pandas</em> by offering a patch? Excellent! This is
+the page you need to read. After you read the below guidelines, the first
+place to contribute issues &amp; ideas to <em>pandas</em> is the <a class="reference external" href="https://github.com/pydata/pandas/issues">Github Issue Tracker</a>. You can filter using the
+<a class="reference external" href="https://github.com/pydata/pandas/issues?labels=Community&amp;state=open">&#8220;Community&#8221;</a> label to see issues we believe are easy entry points for community
+contribution. Some longer discussions occur on the #pydata channel on
+irc.freenode.net, on the <a class="reference external" href="http://groups.google.com/group/pydata">user</a> or
+<a class="reference external" href="http://mail.python.org/mailman/listinfo/pandas-dev">developer</a>
+mailing list.</p>
+<div class="section" id="contributing-to-the-documentation">
+<h2>Contributing to the documentation<a class="headerlink" href="#contributing-to-the-documentation" title="Permalink to this headline">¶</a></h2>
+<p>If you&#8217;re not the developer type, contributing to the documentation is still
+of huge value. You don&#8217;t even have to be an expert on
+<em>pandas</em> to do so! Something as simple as rewriting small passages for clarity
+as you reference the docs is a simple but effective way to contribute. The
+next person to read that passage will be in your debt!</p>
+<p>Actually, there are sections of the docs that are worse off by being written
+by experts. If something in the docs doesn&#8217;t make sense to you, updating the
+relevant section after you figure it out is a simple way to ensure it will
+help the next person.</p>
+<p>Once you have followed the steps below to download the source code from github
+and set up your environment, make sure you have built the C extensions in place,
+then navigate to your local pandas/docs directory and run</p>
+<div class="highlight-python"><pre>python make.py html</pre>
+</div>
+<p>It will take awhile to build the first time, but subsequent builds only process
+the portions you&#8217;ve changed. Then just open the following file in a web
+browser:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pandas</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span>
+</pre></div>
+</div>
+<p>And you&#8217;ll have the satisfaction of seeing your new and improved documentation!</p>
+<p>The documentation is written in reStructuredText, which is almost like writing
+in plain English, and built using <a class="reference external" href="http://sphinx.pocoo.org/">Sphinx</a>. The
+Sphinx Documentation has an excellent <a class="reference external" href="http://sphinx.pocoo.org/rest.html">introduction to reST</a>. Review the Sphinx docs to perform more
+complex changes to the documentation as well.</p>
+<p>Another way to help is to <strong>review docstrings</strong>. These can be edited directly
+in the codebase to make the functionality easier to understand.</p>
+</div>
+<div class="section" id="step-by-step-overview">
+<h2>Step-by-step overview<a class="headerlink" href="#step-by-step-overview" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Read carefully through the below guidelines on working with <em>pandas</em> code.</li>
+<li>Find a bug or feature you&#8217;d like to work on.</li>
+<li>Create a free account on <a class="reference external" href="http://www.github.com">github</a>, where we host our version controlled source repository.</li>
+<li>Set up your local development environment with git (<a class="reference external" href="http://help.github.com/set-up-git-redirect">Instructions</a>).</li>
+<li>Fork the <a class="reference external" href="http://www.github.com./pydata/pandas">pandas repository</a> (<a class="reference external" href="http://help.github.com/fork-a-repo/">Instructions</a>).</li>
+<li>Create a new working branch for your changes.</li>
+<li>Make sure your patch includes test coverage and performance benchmarks!</li>
+<li><a class="reference external" href="http://about.travis-ci.org/docs/user/getting-started/">Hook up Travis-CI</a></li>
+<li>Commit your changes and submit a pull request (<a class="reference external" href="http://help.github.com/send-pull-requests/">Instructions</a>).</li>
+</ol>
+</div>
+<div class="section" id="development-roadmap">
+<h2>Development Roadmap<a class="headerlink" href="#development-roadmap" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>(0.13) Improved SQL / relational database tools</li>
+<li>Tools for working with data sets that do not fit into memory</li>
+<li>(0.10) Better memory usage and performance when reading very large CSV files</li>
+<li>Better statistical graphics using matplotlib</li>
+<li><a class="reference external" href="https://github.com/mikedewar/D3py">Integration with D3.js</a></li>
+<li>Better support for integer <tt class="docutils literal"><span class="pre">NA</span></tt> values</li>
+<li>Extend GroupBy functionality to regular ndarrays, record arrays</li>
+<li>✔ <tt class="docutils literal"><span class="pre">numpy.datetime64</span></tt> integration, <tt class="docutils literal"><span class="pre">scikits.timeseries</span></tt> codebase
+integration. Substantially improved time series functionality.</li>
+<li>✔ Improved PyTables (HDF5) integration</li>
+<li>✔ <tt class="docutils literal"><span class="pre">NDFrame</span></tt> data structure for arbitrarily high-dimensional labeled data</li>
+<li>✔ Better support for NumPy dtype hierarchy without sacrificing usability</li>
+<li>✔ Add a Factor data type (in R parlance)</li>
+</ul>
+</div>
+<div class="section" id="code-design-and-organization">
+<h2>Code design and organization<a class="headerlink" href="#code-design-and-organization" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="file-hierarchy">
+<h3>File Hierarchy<a class="headerlink" href="#file-hierarchy" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">pandas/core</span></tt>: Primary data structures (Series, DataFrame, ...) and related
+tools and algorithms</li>
+<li><tt class="docutils literal"><span class="pre">pandas/src</span></tt>: Cython and C code for implementing fundamental algorithms</li>
+<li><tt class="docutils literal"><span class="pre">pandas/io</span></tt>: Input/output tools (flat files, Excel, HDF5, SQL, ...)</li>
+<li><tt class="docutils literal"><span class="pre">pandas/tools</span></tt>: Auxiliary data algorithms: merge and join routines,
+concatenation, pivot tables, and more.</li>
+<li><tt class="docutils literal"><span class="pre">pandas/sparse</span></tt>: Sparse versions of Series, DataFrame, Panel</li>
+<li><tt class="docutils literal"><span class="pre">pandas/stats</span></tt>: Linear and panel regression, moving window regression. Will
+likely move to <tt class="docutils literal"><span class="pre">statsmodels</span></tt> eventually</li>
+<li><tt class="docutils literal"><span class="pre">pandas/util</span></tt>: Utilities, development, and testing tools</li>
+<li><tt class="docutils literal"><span class="pre">pandas/rpy</span></tt>: RPy2 interface for connecting to R</li>
+</ul>
+</div>
+<div class="section" id="conventions">
+<h3>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="http://www.python.org/dev/peps/pep-0008/">PEP8</a>. We recommend using the
+<a class="reference external" href="http://pypi.python.org/pypi/flake8">flake8</a> tool for checking the style
+of your code.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Note that pandas is not 100% PEP8 compliant but we&#8217;re working on it. If you
+could help us toward this goal, it would be very helpful.</p>
+</div>
+</div>
+</div>
+<div class="section" id="working-with-the-code">
+<h2>Working with the code<a class="headerlink" href="#working-with-the-code" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="version-control-git-and-github">
+<h3>Version Control, Git, and Github<a class="headerlink" href="#version-control-git-and-github" title="Permalink to this headline">¶</a></h3>
+<p>The code is hosted on <a class="reference external" href="https://www.github.com/pydata/pandas">Github</a>. To
+contribute you will need to sign up for a <a class="reference external" href="https://github.com/signup/free">free Github account</a>. We use <a class="reference external" href="http://git-scm.com/">Git</a> for
+version control to allow many people to work together on the project.</p>
+<p>Some great resources for learning git:</p>
+<blockquote>
+<div><ul class="simple">
+<li>the <a class="reference external" href="http://help.github.com/">Github help pages</a>.</li>
+<li>the <a class="reference external" href="http://docs.scipy.org/doc/numpy/dev/index.html">NumPy&#8217;s documentation</a>.</li>
+<li>Matthew Brett&#8217;s <a class="reference external" href="http://matthew-brett.github.com/pydagogue/">Pydagogue</a>.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="getting-started-with-git">
+<h3>Getting Started with Git<a class="headerlink" href="#getting-started-with-git" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://help.github.com/set-up-git-redirect">Github has instructions</a> for installing git, setting up your SSH key, and configuring git.</p>
+</div>
+<div class="section" id="forking">
+<h3>Forking<a class="headerlink" href="#forking" title="Permalink to this headline">¶</a></h3>
+<p>You will need your own fork to work on the code. Go to the <a class="reference external" href="https://github.com/pydata/pandas">pandas project
+page</a> and hit the <em>fork</em> button. You will
+want to clone your fork to your machine:</p>
+<div class="highlight-python"><pre>git clone git@github.com:your-user-name/pandas.git pandas-yourname
+cd pandas-yourname
+git remote add upstream git://github.com/pydata/pandas.git</pre>
+</div>
+<p>This creates the directory <cite>pandas-yourname</cite> and connects your repository to
+the upstream (main project) pandas repository.</p>
+</div>
+<div class="section" id="creating-a-branch">
+<h3>Creating a Branch<a class="headerlink" href="#creating-a-branch" title="Permalink to this headline">¶</a></h3>
+<p>You want your master branch to reflect only production-ready code, so create a
+feature branch for making your changes. For example:</p>
+<div class="highlight-python"><pre>git branch shiny-new-feature
+git checkout shiny-new-feature</pre>
+</div>
+<p>This changes your working directory to the shiny-new-feature branch.</p>
+</div>
+<div class="section" id="making-changes">
+<h3>Making changes<a class="headerlink" href="#making-changes" title="Permalink to this headline">¶</a></h3>
+<p>Now hack away! Keep any changes in this branch specific to one bug or feature so it is clear what the branch brings to pandas.</p>
+<p>Once you&#8217;ve made changes, you can see them by typing:</p>
+<div class="highlight-python"><pre>git status</pre>
+</div>
+<p>If you&#8217;ve created a new file, it is not being tracked by git. Add it by typing</p>
+<div class="highlight-python"><pre>git add path/to/file-to-be-added.py</pre>
+</div>
+<p>Doing &#8216;git status&#8217; again should give something like</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># On branch shiny-new-feature</span>
+<span class="c">#</span>
+<span class="c">#       modified:   /relative/path/to/file-you-added.py</span>
+<span class="c">#</span>
+</pre></div>
+</div>
+<p>Finally, commit your changes to your local repository with an explanatory message, such as</p>
+<div class="highlight-python"><pre>git commit -m "Optimized such-and-such function"</pre>
+</div>
+<p>Your changes are now committed in your local repository.</p>
+</div>
+<div class="section" id="pushing-your-changes">
+<h3>Pushing your changes<a class="headerlink" href="#pushing-your-changes" title="Permalink to this headline">¶</a></h3>
+<p>When you want your changes to appear publicly on your Github page, push your
+forked feature branch&#8217;s commits</p>
+<div class="highlight-python"><pre>git push origin shiny-new-feature</pre>
+</div>
+<p>Here <cite>origin</cite> is the default name given to your remote repository on Github.
+You can see the remote repositories</p>
+<div class="highlight-python"><pre>git remote -v</pre>
+</div>
+<p>If you added the upstream repository as described above you will see something
+like</p>
+<div class="highlight-python"><pre>origin  git@github.com:yourname/pandas.git (fetch)
+origin  git@github.com:yourname/pandas.git (push)
+upstream        git://github.com/pydata/pandas.git (fetch)
+upstream        git://github.com/pydata/pandas.git (push)</pre>
+</div>
+<p>Now your code is on Github, but it is not yet a part of the pandas project.
+Before we get there, we need to address our testing and performance
+requirements for new code.</p>
+</div>
+</div>
+<div class="section" id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="test-driven-development">
+<h3>Test driven development<a class="headerlink" href="#test-driven-development" title="Permalink to this headline">¶</a></h3>
+<p>We&#8217;re serious about <a class="reference external" href="http://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development (TDD)</a>. Any code you
+contribute must have adequate test coverage to be considered.</p>
+<p>Like many packages, <em>pandas</em> uses the <a class="reference external" href="http://somethingaboutorange.com/mrl/projects/nose/">Nose testing system</a> and the convenient
+extensions in <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/routines.testing.html">numpy.testing</a>.</p>
+</div>
+<div class="section" id="running-the-test-suite">
+<h3>Running the test suite<a class="headerlink" href="#running-the-test-suite" title="Permalink to this headline">¶</a></h3>
+<p>The best way to develop <em>pandas</em> is to build the C extensions in-place by
+running:</p>
+<div class="highlight-python"><pre>python setup.py build_ext --inplace</pre>
+</div>
+<p>The tests can then be run directly inside your git clone (without having to
+install pandas) by typing:</p>
+<div class="highlight-python"><pre>nosetests pandas</pre>
+</div>
+<p>Another very common option is to do a <tt class="docutils literal"><span class="pre">develop</span></tt> install of pandas:</p>
+<div class="highlight-python"><pre>python setup.py develop</pre>
+</div>
+<p>This makes a symbolic link that tells the Python interpreter to import pandas
+from your development directory. Thus, you can always be using the development
+version on your system without being inside the clone directory.</p>
+</div>
+<div class="section" id="how-to-write-a-test">
+<h3>How to write a test<a class="headerlink" href="#how-to-write-a-test" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">pandas.util.testing</span></tt> module has many special <tt class="docutils literal"><span class="pre">assert</span></tt> functions that
+make it easier to make statements about whether Series or DataFrame objects are
+equivalent. The easiest way to verify that your code is correct is to
+explicitly construct the result you expect, then compare the actual result to
+the expected correct result:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_pivot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;index&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">],</span>
+        <span class="s">&#39;columns&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="s">&#39;One&#39;</span><span class="p">,</span> <span class="s">&#39;One&#39;</span><span class="p">,</span> <span class="s">&#39;One&#39;</span><span class="p">,</span> <span class="s">&#39;Two&#39;</span><span class="p">,</span> <span class="s">&#39;Two&#39;</span><span class="p">,</span> <span class="s">&#39;Two&#39;</span><span class="p">],</span>
+        <span class="s">&#39;values&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="n">frame</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">pivoted</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s">&#39;index&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s">&#39;columns&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s">&#39;values&#39;</span><span class="p">)</span>
+
+    <span class="n">expected</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s">&#39;One&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s">&#39;A&#39;</span> <span class="p">:</span> <span class="mf">1.</span><span class="p">,</span> <span class="s">&#39;B&#39;</span> <span class="p">:</span> <span class="mf">2.</span><span class="p">,</span> <span class="s">&#39;C&#39;</span> <span class="p">:</span> <span class="mf">3.</span><span class="p">},</span>
+        <span class="s">&#39;Two&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="s">&#39;A&#39;</span> <span class="p">:</span> <span class="mf">1.</span><span class="p">,</span> <span class="s">&#39;B&#39;</span> <span class="p">:</span> <span class="mf">2.</span><span class="p">,</span> <span class="s">&#39;C&#39;</span> <span class="p">:</span> <span class="mf">3.</span><span class="p">}</span>
+    <span class="p">})</span>
+
+    <span class="n">assert_frame_equal</span><span class="p">(</span><span class="n">pivoted</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="performance-testing-with-vbench">
+<h3>Performance testing with vbench<a class="headerlink" href="#performance-testing-with-vbench" title="Permalink to this headline">¶</a></h3>
+<p>We created the <a class="reference external" href="https://github.com/pydata/vbench">vbench library</a> library
+to enable easy monitoring of the performance of critical pandas operations.
+These benchmarks are all found in the <tt class="docutils literal"><span class="pre">pandas/vb_suite</span></tt> directory.
+Interested users should simply look at the code there for the latest vbench
+API as <tt class="docutils literal"><span class="pre">vbench</span></tt> is still somewhat experimental and subject to change.</p>
+</div>
+</div>
+<div class="section" id="contributing-your-changes-to-pandas">
+<h2>Contributing your changes to pandas<a class="headerlink" href="#contributing-your-changes-to-pandas" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="first-double-check-your-code">
+<h3>First, double check your code<a class="headerlink" href="#first-double-check-your-code" title="Permalink to this headline">¶</a></h3>
+<p>When you&#8217;re ready to ask for a code review, you will file a pull request. Before you do, again make sure you&#8217;ve followed all the guidelines outlined in this document. You should also double check your branch changes against the branch it was based off of:</p>
+<ol class="arabic simple">
+<li>Navigate to your repository on Github.</li>
+<li>Click on <cite>Branches</cite>.</li>
+<li>Click on the <cite>Compare</cite> button for your feature branch.</li>
+<li>Select the <cite>base</cite> and <cite>compare</cite> branches, if necessary. This will be <cite>master</cite> and <cite>shiny-new-feature</cite>, respectively.</li>
+</ol>
+</div>
+<div class="section" id="then-decide-if-you-need-to-rebase">
+<h3>Then, decide if you need to rebase<a class="headerlink" href="#then-decide-if-you-need-to-rebase" title="Permalink to this headline">¶</a></h3>
+<p>If you can avoid it, don&#8217;t rebase. But if there has been work in
+upstream/master related to the work in your branch since you started your
+patch, you may need to rebase.</p>
+<p>A rebase replays commits from one branch on top of another branch to preserve
+a linear history. Remember, your commits may have been tested against an
+older version of master. If you rebase, you may introduce bugs. But if you don&#8217;t rebase, the two patches may conflict with each other!</p>
+<p>Always make a new branch before doing rebase, and make sure you <a class="reference external" href="http://help.github.com/rebase/">thoroughly understand rebasing</a> lest you invoke the wrath of the git gods.</p>
+</div>
+<div class="section" id="finally-make-the-pull-request">
+<h3>Finally, make the pull request<a class="headerlink" href="#finally-make-the-pull-request" title="Permalink to this headline">¶</a></h3>
+<p>If everything looks good you are ready to make a pull request:</p>
+<ol class="arabic simple">
+<li>Navigate to your repository on Github.</li>
+<li>Click on the <cite>Pull Request</cite> button.</li>
+<li>You can then click on <cite>Commits</cite> and <cite>Files Changed</cite> to make sure everything looks okay one last time.</li>
+<li>Write a description of your changes in the <cite>Preview Discussion</cite> tab.</li>
+<li>Click <cite>Send Pull Request</cite>.</li>
+</ol>
+<p>This request then appears to the repository maintainers, and they will review
+the code. If you need to make more changes, you can make them in
+your branch, push them to Github, and the pull request will be automatically
+updated.</p>
+</div>
+<div class="section" id="optional-delete-your-merged-branch">
+<h3>Optional: delete your merged branch<a class="headerlink" href="#optional-delete-your-merged-branch" title="Permalink to this headline">¶</a></h3>
+<p>Once your feature branch is accepted into upstream, you&#8217;ll probably want to get rid of the branch. First, merge upstream master into your branch so git knows it is safe to delete your branch</p>
+<div class="highlight-python"><pre>git fetch upstream
+git checkout master
+git merge upstream/master</pre>
+</div>
+<p>Then you can just do:</p>
+<div class="highlight-python"><pre>git branch -d shiny-new-feature</pre>
+</div>
+<p>Make sure you use a lower-case -d, or else git won&#8217;t warn you if your feature
+branch has not actually been merged.</p>
+<p>The branch will still exist on Github, so to delete it there do</p>
+<div class="highlight-python"><pre>git push origin --delete shiny-new-feature</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<div class="footer-wrapper">
+</div>
+
+<a href="http://github.com/pydata/pandas"><img style="position: fixed; top: 0; right: 0; border: 0;"
+   src="_static/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a></div>
+
+</body>
+</html>
+
+  </body>
+</html>

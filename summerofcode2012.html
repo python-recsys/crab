@@ -1,0 +1,304 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-27880019-2']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <title>Google Summer of Code 2012 &mdash; pandas: Python Data Analysis Library</title>
+    <link rel="stylesheet" href="_static/pydata.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="pandas: Python Data Analysis Library" href="index.html" /> 
+  </head>
+  <body>
+<div class="header-wrapper">
+	<div class="header">
+		<div class="logo">
+			<a href="index.html"><img class="logo" src="_static/pandas_logo.png" alt="Logo"/></a>
+		</div>
+
+        <div class="rel">
+			<a href="index.html">overview</a> //
+			<a href="getpandas.html">get pandas</a> //
+			<a href="http://pandas.pydata.org/pandas-docs/stable">documentation</a> //
+			<a href="community.html">community</a> //
+			<a href="talks.html">talks</a>
+		</div>
+
+	</div>
+</div>
+
+<div class="content-wrapper">
+<div class="content">
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+
+<div class="sidebarblock">
+	<h3>Versions</h3>
+
+	<div class="tile">
+		<h4>Official Release</h4>
+     	0.12.0 &ndash; July 2013<br/>
+    	<a href="getpandas.html">downloads</a> // <a href="http://pandas.pydata.org/pandas-docs/stable">docs</a> // <a href="http://pandas.pydata.org/pandas-docs/stable/pandas.pdf">pdf</a>
+	</div>
+
+	<div class="tile">
+		<h4>Development</h4>
+    	0.13 - October 2013<br/>
+    	<a href="https://github.com/pydata/pandas">github</a> // <a href="http://pandas.pydata.org/pandas-docs/dev">docs</a> // <a href="http://pandas.pydata.org/pandas-docs/dev/pandas.pdf">pdf</a>
+    </div>
+
+    <div class="tile">
+      <h4>Previous Releases</h4>
+    <div>
+        0.11.0 -
+        <a href="http://pypi.python.org/pypi/pandas/0.11.0/#downloads">download</a>          //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.11.0/">docs</a> //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.11.0/pandas.pdf">pdf</a>
+      </div>
+    <div>
+        0.10.1 -
+        <a href="http://pypi.python.org/pypi/pandas/0.10.1/#downloads">download</a>          //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.10.1/">docs</a> //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.10.1/pandas.pdf">pdf</a>
+      </div>
+    <div>
+        0.10.0 -
+        <a href="http://pypi.python.org/pypi/pandas/0.10.0/#downloads">download</a>          //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.10.0/">docs</a> //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.10.0/pandas.pdf">pdf</a>
+      </div>
+    <div>
+        0.9.1 -
+        <a href="http://pypi.python.org/pypi/pandas/0.9.1/#downloads">download</a>          //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.9.1/">docs</a> //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.9.1/pandas.pdf">pdf</a>
+      </div>
+    <div>
+        0.9.0 -
+        <a href="http://pypi.python.org/pypi/pandas/0.9.0/#downloads">download</a>          //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.9.0/">docs</a> //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.9.0/pandas.pdf">pdf</a>
+      </div>
+    <div>
+        0.8.1 -
+        <a href="http://pypi.python.org/pypi/pandas/0.8.1/#downloads">download</a>          //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.8.1/">docs</a> //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.8.1/pandas.pdf">pdf</a>
+      </div>
+      <div>
+        0.8.0 -
+        <a href="http://pypi.python.org/pypi/pandas/0.8.0/#downloads">download</a>          //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.8.0/">docs</a> //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.8.0/pandas.pdf">pdf</a>
+      </div>
+      <div>
+        0.7.3 -
+        <a href="http://pypi.python.org/pypi/pandas/0.7.3/#downloads">download</a>          //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.7.3/">docs</a> //
+        <a href="http://pandas.pydata.org/pandas-docs/version/0.7.3/pandas.pdf">pdf</a>
+      </div>
+      <!-- <div> -->
+      <!--   0.7.2 - -->
+      <!--   <a href="http://pypi.python.org/pypi/pandas/0.7.2/#downloads">download</a>          // -->
+      <!--   <a href="http://pandas.pydata.org/pandas-docs/version/0.7.2/">docs</a> // -->
+      <!--   <a href="http://pandas.pydata.org/pandas-docs/version/0.7.2/pandas.pdf">pdf</a> -->
+      <!-- </div> -->
+      <!-- <div> -->
+      <!--   0.7.1 - -->
+      <!--   <a href="http://pypi.python.org/pypi/pandas/0.7.1/#downloads">download</a>          // -->
+      <!--   <a href="http://pandas.pydata.org/pandas-docs/version/0.7.1/">docs</a> // -->
+      <!--   <a href="http://pandas.pydata.org/pandas-docs/version/0.7.1/pandas.pdf">pdf</a> -->
+      <!-- </div> -->
+      <!-- <div> -->
+      <!--   0.7.0 - -->
+      <!--   <a href="http://pypi.python.org/pypi/pandas/0.7.0/#downloads">download</a>          // -->
+      <!--   <a href="http://pandas.pydata.org/pandas-docs/version/0.7.0/">docs</a> // -->
+      <!--   <a href="http://pandas.pydata.org/pandas-docs/version/0.7.0/pandas.pdf">pdf</a> -->
+      <!-- </div> -->
+
+
+    </div>
+
+
+</div>
+
+<div class="sidebarblock">
+	<h3>About Pandas</h3>
+  	<ul>
+    	<li><a href="http://pandas.pydata.org/pandas-docs/dev/whatsnew.html">What's New</a></li>
+		<li><a href="http://pandas.pydata.org/pandas-docs/stable/install.html">Getting Started</a></li>
+		<li><a href="https://github.com/pydata/pandas/issues">Issue Tracker</a></li>
+    	<li><a href="http://pandas.pydata.org/pandas-docs/stable/overview.html#license">License</a></li>
+		<li><a href="developers.html">Developer Page</a></li>
+		<li><a href="http://pandas.pydata.org/pandas-docs/vbench">Performance Benchmarks</a></li>
+  	</ul>
+</div>
+
+<div class="sidebarblock">
+<h3>Get the book</h3>
+   <a href="http://www.kqzyfj.com/click-7040302-11260198?url=http%3A%2F%2Fshop.oreilly.com%2Fproduct%2F0636920023784.do&cjsku=0636920023784"><img src="_static/pydata_cover.jpg" alt="Python for Data Analysis", width=180, height=240></a>
+</div>
+
+<div class="sidebarblock">
+	<h3>Related Tools</h3>
+	<ul>
+    	<li><a href="http://www.scipy.org/">SciPy</a></li>
+    	<li><a href="http://www.numpy.org/">NumPy</a></li>
+    	<li><a href="http://statsmodels.sourceforge.net/">StatsModels</a></li>
+    	<li><a href="http://scikit-learn.org">scikit-learn</a></li>
+		<li><a href="http://ipython.org/">IPython</a></li>
+		<li><a href="http://matplotlib.sourceforge.net/">matplotlib</a></li>
+    	<li><a href="https://github.com/pydata/vbench">vbench</a></li>
+  	</ul>
+</div>
+
+</div>
+</div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="google-summer-of-code-2012">
+<h1>Google Summer of Code 2012<a class="headerlink" href="#google-summer-of-code-2012" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="http://www.google-melange.com/gsoc/homepage/google/gsoc2012">Google Summer of Code</a> is a program that offers students stipends to write code for open source projects.</p>
+<p>Below are some suggested projects for students interested in contributing to the <em>pandas</em> project for the summer of 2012. Students are also encouraged to propose their own projects of interest! To get involved, students should review the <a class="reference external" href="developers.html">developer page</a> and email the <a class="reference external" href="http://groups.google.com/group/pystatsmodels">developer mailing list</a> to contact a mentor.</p>
+<p>These projects will enable students to hone their abilities in Python, Cython, and C, while becoming familiar with an essential tool for Data Science used in multiple industries.</p>
+<p>Thanks to Arc Riley and the <a class="reference external" href="http://www.python.org/psf/">Python Software Foundation</a> for coordinating this effort.</p>
+<div class="section" id="panel-indexing">
+<h2>Panel Indexing<a class="headerlink" href="#panel-indexing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="description">
+<h3>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
+<p>In the pandas data analysis library for Python, the Panel (3D) data objects are missing several important indexing operations, foremost of which is proper hierarchical indexing, which are fully implemented in the lower-dimensional data objects, such as DataFrame (2D) and Series (1D). These indexing operations are described in the following pandas documentation:</p>
+<p><a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/indexing.html">http://pandas.pydata.org/pandas-docs/stable/indexing.html</a></p>
+<p>The Panel indexing operations are necessary for API consistency. The developer will gain exposure to the internals of the pandas data analysis library, and will see how Cython and C code are used in critical code paths to optimize performance.</p>
+</div>
+<div class="section" id="expected-results">
+<h3>Expected Results<a class="headerlink" href="#expected-results" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Implement missing Panel (3D) indexing features, including hierarchical indexing</li>
+<li>Comprehensive test suite for new indexing features</li>
+</ul>
+</div>
+<div class="section" id="knowledge-prerequisite">
+<h3>Knowledge Prerequisite<a class="headerlink" href="#knowledge-prerequisite" title="Permalink to this headline">¶</a></h3>
+<p>Python [expert], Cython [basic], C [intermediate]</p>
+</div>
+<div class="section" id="mentor">
+<h3>Mentor<a class="headerlink" href="#mentor" title="Permalink to this headline">¶</a></h3>
+<p>Adam Klein</p>
+</div>
+</div>
+<div class="section" id="extending-dtype-support-in-pandas">
+<h2>Extending dtype support in pandas<a class="headerlink" href="#extending-dtype-support-in-pandas" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Description<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>In the pandas data analysis library for Python, all data elements are stored as one of four basic data types: 64-bit integer, 64-bit floating point, 8-bit boolean, and python object pointer. Support for additional numpy dtypes (such as int8, int16, float8, etc.) is important for several reasons, one of which is to reduce memory footprint where extra space is unnecessary; another reason is to lay the groundwork for a &#8220;structured array&#8221; back-end for the pandas data objects. This latter implementation is an important step toward supporting memory-mapped objects for larger-than-memory data sets in pandas. The developer will become familiar with the internals of pandas as well as the C, Cython, and numpy extension code that drives pandas array-based processing.</p>
+</div>
+<div class="section" id="id2">
+<h3>Expected Results<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>extend Panel, DataFrame, and Series functionality to work on additional numpy dtypes</li>
+<li>comprehensive test additions to test suite to verify functionality</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>Knowledge Prerequisite<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Python [expert], C [intermediate], Cython [intermediate], Numpy [intermediate]</p>
+</div>
+<div class="section" id="id4">
+<h3>Mentor<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Wes McKinney</p>
+</div>
+</div>
+<div class="section" id="plots-in-pandas">
+<h2>Plots in pandas<a class="headerlink" href="#plots-in-pandas" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h3>Description<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>The pandas data analysis library for Python provides 1D (Series), 2D (DataFrame), and 3D (Panel) data objects with which to do interactive analysis. One of the weaker areas of the library is visualization.  Many additional plots beyond the already-included histogram, line, and box plots should be added to the core library, which will help generally with pandas data visualization through matplotlib, the standard graphing library for scientific Python. The developer will become familiar with the internals of pandas, as well as an expert in plot generation in matplotlib.</p>
+<p><a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/visualization.html">http://pandas.pydata.org/pandas-docs/stable/visualization.html</a></p>
+</div>
+<div class="section" id="id6">
+<h3>Expected Results<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>additional plots and plot options to visualize data stored in pandas objects</li>
+<li>comprehensive test additions to test suite to verify functionality</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h3>Knowledge Prerequisite<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>Python [expert], C [basic], Cython [basic], Matplotlib [basic]</p>
+</div>
+<div class="section" id="id8">
+<h3>Mentor<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>Adam Klein</p>
+</div>
+</div>
+<div class="section" id="pandas-gui">
+<h2>pandas GUI<a class="headerlink" href="#pandas-gui" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id9">
+<h3>Description<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>The pandas data analysis library for Python provides 1D (Series), 2D (DataFrame), and 3D (Panel) data objects with which to do interactive analysis. Currently the only way to interact with these objects is through the API. This project proposes to add a simple Qt or Tk GUI with which to view and manipulate these objects. For instance, a 2D (DataFrame) viewer would provide a spreadsheet-based GUI or widget, while a 3D (Panel) viewer could provide similar views as projections of the 3D object. This would provide an alternative way of interacting with data loaded into the pandas data objects.</p>
+</div>
+<div class="section" id="id10">
+<h3>Expected Results<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>a simple GUI with which to view and edit pandas data objects</li>
+<li>comprehensive test additions to test suite to verify functionality</li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h3>Knowledge Prerequisite<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>Python [expert], Tk or Qt [intermediate]</p>
+</div>
+<div class="section" id="id12">
+<h3>Mentor<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<p>Chang She</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+<div class="footer-wrapper">
+</div>
+
+<a href="http://github.com/pydata/pandas"><img style="position: fixed; top: 0; right: 0; border: 0;"
+   src="_static/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a></div>
+
+</body>
+</html>
+
+  </body>
+</html>

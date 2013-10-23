@@ -17,7 +17,7 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
-    <title>Python Data Analysis Library &mdash; pandas: Python Data Analysis Library</title>
+    <title>pandas Papers &mdash; pandas: Python Data Analysis Library</title>
     <link rel="stylesheet" href="_static/pydata.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -32,8 +32,9 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="pandas: Python Data Analysis Library" href="#" />
-    <link rel="next" title="Get pandas!" href="getpandas.html" /> 
+    <link rel="top" title="pandas: Python Data Analysis Library" href="index.html" />
+    <link rel="next" title="Developers" href="developers.html" />
+    <link rel="prev" title="The pandas community" href="community.html" /> 
   </head>
   <body>
 <div class="header-wrapper">
@@ -187,125 +188,32 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="python-data-analysis-library">
-<h1>Python Data Analysis Library<a class="headerlink" href="#python-data-analysis-library" title="Permalink to this headline">¶</a></h1>
-<p><em>pandas</em> is an open source, BSD-licensed library providing high-performance,
-easy-to-use data structures and data analysis tools for the <a class="reference external" href="http://www.python.org/">Python</a> programming language.</p>
-<div class="section" id="released-july-24-2013">
-<h2>0.12.0 released (July 24, 2013)<a class="headerlink" href="#released-july-24-2013" title="Permalink to this headline">¶</a></h2>
-<p>The new major 0.12 release is out. This includes the usual large slate of bug
-fixes and performance improvements, and many new important features. Some
-highlights among new features include:</p>
+  <div class="section" id="pandas-papers">
+<h1><em>pandas</em> Papers<a class="headerlink" href="#pandas-papers" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference external" href="http://www.scribd.com/doc/71048089/pandas-a-Foundational-Python-Library-for-Data-Analysis-and-Statistics">White Paper from PyHPC2011</a></li>
+</ul>
+</div>
+<div class="section" id="pandas-talks">
+<h1><em>pandas</em> Talks<a class="headerlink" href="#pandas-talks" title="Permalink to this headline">¶</a></h1>
+<p>Introduction to pandas at SciPy 2010:</p>
+<blockquote>
+<div><div style="width:510px" id="__ss_8656055"><iframe src="http://www.slideshare.net/slideshow/embed_code/8656055" width="510" height="426" frameborder="1" marginwidth="0" marginheight="0" scrolling="no"></iframe></div></div></blockquote>
+<p>Introduction to pandas at PyHPC 2011:</p>
+<blockquote>
+<div><div style="width:510px" id="__ss_10227023"><iframe src="http://www.slideshare.net/slideshow/embed_code/10227023" width="510" height="426" frameborder="1" marginwidth="0" marginheight="0" scrolling="no"></iframe></div></div></blockquote>
+<p>Inside pandas development at NYC Python Meetup:</p>
+<blockquote>
+<div><iframe src="http://player.vimeo.com/video/35090565?byline=0&amp;portrait=0" width="510" height="287" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div></blockquote>
+<p>More presentations:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Integrated JSON reading and writing with the <cite>read_json</cite> functions and
-methods like <cite>DataFrame.to_json</cite>.</li>
-<li>New HTML table reading function <cite>read_html</cite> which will use either lxml or
-BeautifulSoup under the hood.</li>
-<li>Support for reading and writing STATA format files.</li>
+<li><a class="reference external" href="http://www.slideshare.net/wesm/structured-data-challenges-in-finance-and-statistics">Structured Data Challenges in Finance and Statistics (Rice)</a> (11/21/11)</li>
+<li><a class="reference external" href="http://www.slideshare.net/wesm/python-for-financial-data-analysis-with-pandas">Python for Financial Data Analysis with pandas</a> (10/17/11)</li>
+<li><a class="reference external" href="http://www.slideshare.net/wesm/data-analysis-and-statistics-in-python-using-pandas-and-statsmodels">Data Analysis and Statistics in Python</a> (9/14/11)</li>
+<li><a class="reference external" href="http://www.slideshare.net/wesm">Older presentations on slideshare</a></li>
 </ul>
 </div></blockquote>
-<p>Please check out the <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/whatsnew.html">What&#8217;s New page</a> for much more detail.</p>
-<p>Find binaries and source archives for v0.12.0 are <a class="reference external" href="getpandas.html">available now</a></p>
-<p>Note we are posting stable daily development builds of the pandas windows
-binaries <a class="reference external" href="http://pandas.pydata.org/pandas-build/dev/">here</a>. You can download
-them via the <a class="reference external" href="getpandas.html#development-version">Development Version</a>
-section of the &#8220;get pandas&#8221; page.</p>
-</div>
-<div class="section" id="quick-vignette">
-<h2>Quick vignette<a class="headerlink" href="#quick-vignette" title="Permalink to this headline">¶</a></h2>
-<iframe src="http://player.vimeo.com/video/59324550" width="500"
-height="309" frameborder="0" webkitAllowFullScreen mozallowfullscreen
-allowFullScreen></iframe> <p><a href="http://vimeo.com/59324550">10-minute
-tour of pandas</a> from <a href="http://vimeo.com/user10077863">Wes
-McKinney</a> on <a href="http://vimeo.com">Vimeo</a>.</p></div>
-<div class="section" id="what-problem-does-pandas-solve">
-<h2>What problem does <em>pandas</em> solve?<a class="headerlink" href="#what-problem-does-pandas-solve" title="Permalink to this headline">¶</a></h2>
-<p>Python has long been great for data munging and preparation, but less so for
-data analysis and modeling. <em>pandas</em> helps fill this gap, enabling you to
-carry out your entire data analysis workflow in Python without having to
-switch to a more domain specific language like R.</p>
-<p>Combined with the excellent <a class="reference external" href="http://ipython.org/">IPython</a> toolkit and
-other libraries, the environment for doing data analysis in Python excels in
-performance, productivity, and the ability to collaborate.</p>
-<p><em>pandas</em> does not implement significant modeling functionality outside of
-linear and panel regression; for this, look to <a class="reference external" href="http://statsmodels.sf.net">statsmodels</a> and <a class="reference external" href="http://scikit-learn.org">scikit-learn</a>. More work is still needed to make Python a first
-class statistical modeling environment, but we are well on our way toward that
-goal.</p>
-</div>
-<div class="section" id="what-do-our-users-have-to-say">
-<h2>What do our users have to say?<a class="headerlink" href="#what-do-our-users-have-to-say" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><a class="reference external image-reference" href="http://www.aqr.com/"><img alt="AQR Capital Management Logo" class="align-right" src="_images/aqr_capital_management_logo.png" /></a>
-</div></blockquote>
-<div class="line-block">
-<div class="line"><strong>Roni Israelov, PhD</strong></div>
-<div class="line">Portfolio Manager</div>
-<div class="line"><a class="reference external" href="http://www.aqr.com/">AQR Capital Management</a></div>
-</div>
-<blockquote>
-<div><p>&#8220;<em>pandas</em> allows us to focus more on research and less on programming. We
-have found <em>pandas</em> easy to learn, easy to use, and easy to maintain.
-The bottom line is that it has increased our productivity.&#8221;</p>
-<a class="reference external image-reference" href="http://www.appnexus.com/"><img alt="AppNexus Logo" class="align-right" src="_images/appnexus_logo.png" /></a>
-</div></blockquote>
-<div class="line-block">
-<div class="line"><strong>David Himrod</strong></div>
-<div class="line">Director of Optimization &amp; Analytics</div>
-<div class="line"><a class="reference external" href="http://www.appnexus.com/">AppNexus</a></div>
-</div>
-<blockquote>
-<div><p>&#8220;<em>pandas</em> is the perfect tool for bridging the gap between rapid
-iterations of ad-hoc analysis and production quality code. If you
-want one tool to be used across a multi-disciplined organization of
-engineers, mathematicians and analysts, look no further.&#8221;</p>
-<a class="reference external image-reference" href="http://www.datadoghq.com/"><img alt="Datadog Logo" class="align-right" src="_images/datadog_logo.png" /></a>
-</div></blockquote>
-<div class="line-block">
-<div class="line"><strong>Olivier Pomel</strong></div>
-<div class="line">CEO</div>
-<div class="line"><a class="reference external" href="http://www.datadoghq.com/">Datadog</a></div>
-</div>
-<blockquote>
-<div>&#8220;We use <em>pandas</em> to process time series data on our production servers.
-The simplicity and elegance of its API, and its high level
-of performance for high-volume datasets, made it a perfect choice for
-us.&#8221;</div></blockquote>
-<div class="toctree-wrapper compound">
-</div>
-</div>
-<div class="section" id="library-highlights">
-<h2>Library Highlights<a class="headerlink" href="#library-highlights" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>A fast and efficient <strong>DataFrame</strong> object for data manipulation with
-integrated indexing;</li>
-<li>Tools for <strong>reading and writing data</strong> between in-memory data structures and
-different formats: CSV and text files, Microsoft Excel, SQL databases, and
-the fast HDF5 format;</li>
-<li>Intelligent <strong>data alignment</strong> and integrated handling of <strong>missing data</strong>:
-gain automatic label-based alignment in computations and easily manipulate
-messy data into an orderly form;</li>
-<li>Flexible <strong>reshaping</strong> and pivoting of data sets;</li>
-<li>Intelligent label-based <strong>slicing</strong>, <strong>fancy indexing</strong>, and <strong>subsetting</strong>
-of large data sets;</li>
-<li>Columns can be inserted and deleted from data structures for <strong>size
-mutability</strong>;</li>
-<li>Aggregating or transforming data with a powerful <strong>group by</strong> engine
-allowing split-apply-combine operations on data sets;</li>
-<li>High performance <strong>merging and joining</strong> of data sets;</li>
-<li><strong>Hierarchical axis indexing</strong> provides an intuitive way of working with
-high-dimensional data in a lower-dimensional data structure;</li>
-<li><strong>Time series</strong>-functionality: date range generation and frequency
-conversion, moving window statistics, moving window linear regressions, date
-shifting and lagging. Even create domain-specific time offsets and join time
-series without losing data;</li>
-<li>Highly <strong>optimized for performance</strong>, with critical code paths written in
-<a class="reference external" href="http://www.cython.org/">Cython</a> or C.</li>
-<li>Python with <em>pandas</em> is in use in a wide variety of <strong>academic and
-commercial</strong> domains, including Finance, Neuroscience, Economics,
-Statistics, Advertising, Web Analytics, and more.</li>
-</ul>
-</div>
 </div>
 
 
