@@ -46,7 +46,7 @@ div.header-wrapper {
 
 /* Default body styles */
 a {
-  color: white;
+  color: #b5742f;
 }
 
 div.bodywrapper a, div.footer a {
@@ -158,11 +158,11 @@ div.header h1 a:hover {
 
 div.header div.rel {
   margin-top: 1em;
-  border-top: 1px solid #AAA;
-  border-bottom: 1px solid #AAA;
   padding: 7px;
   text-align: center;
   background-color: #b5742f;
+  box-shadow: inset 0px 1px 3px #333;
+  border: 1px solid #fff;
 }
 
 div.header div.rel a {
@@ -199,7 +199,7 @@ div.document ul {
 }
 
 div.document li {
-	margin-bottom:1em;
+  margin-bottom:1em;
 }
 
 div.document dd {
@@ -271,6 +271,7 @@ div.sphinxsidebar {
 
 div.sphinxsidebar a, div.header a {
   text-decoration: none;
+  color: #fff;
 }
 
 div.sphinxsidebar a:hover, div.header a:hover {
@@ -286,16 +287,17 @@ div.sphinxsidebar h3 {
 }
 
 div.sphinxsidebar h4 {
-  margin-bottom: 0;
-  font-weight: bold;
+margin-bottom: 0;
+font-weight: bold;
+color: #000;
 }
 
 div.sphinxsidebar .tile {
-  border: 1px solid #8C9C9A;
   border-radius: 1px;
-  background-color: #b5742f;
   padding-left: 0.5em;
   margin: 1em 0;
+  box-shadow: inset 0px 1px 3px #333;
+  background-color: #b5742f;
 }
 
 div.sphinxsidebar ul {
@@ -343,6 +345,9 @@ div.sidebarblock {
   border-bottom: 1px solid #AAA;
   margin-bottom: .8em;
 }
+div.sidebarblock ul li a{
+  color: #b5742f;
+}
 
 
 /* Footer */
@@ -360,7 +365,7 @@ div.footer {
 }
 
 div.footer, div.footer a {
-  color: #8C9C9A;
+  color: #666;
 
 }
 
