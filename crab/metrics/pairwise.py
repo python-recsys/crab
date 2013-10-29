@@ -17,6 +17,12 @@ To be a 'true' metric, it must obey the following four conditions::
 """
 
 # Authors: Marcel Caraciolo <caraciol@gmail.com>
+# Based on scikit-learn's metrics.pairwise, written by
+#   Alexandre Gramfort <alexandre.gramfort@inria.fr>
+#   Mathieu Blondel <mathieu@mblondel.org>
+#   Robert Layton <robertlayton@gmail.com>
+#   Andreas Mueller <amueller@ais.uni-bonn.de>
+#   Lars Buitinck <larsmans@gmail.com>
 
 # License: BSD Style.
 

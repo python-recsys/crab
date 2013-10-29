@@ -1,5 +1,11 @@
 """Utilities for input validation"""
-# Authors: Marcel Caraciolo <marcel@pingmind.com>
+
+# Taken from scikit-learn.
+# Authors: Olivier Grisel
+#          Gael Varoquaux
+#          Andreas Mueller
+#          Lars Buitinck
+
 
 from scipy import sparse
 import numpy as np
